@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     protected $quizCategoryService;
+    
     protected $questionService;
     function __construct(QuizCategoryService $quizCategoryService, QuestionService $questionService)
     {
