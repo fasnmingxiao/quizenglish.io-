@@ -1,0 +1,32 @@
+:root {
+    --gray: #828282;
+    --blue: #2e80ff;
+    --black: #333333;
+    --white: #ffffff;
+    --gradient-from: #1884ff;
+    --gradient-to: #49cdff;
+    --green: #01ff88;
+    --red: #ff8d8d;
+    --clr-title-search: #0000;
+    --clr-quiz-item: #f6faff;
+    --clr-bg-fluid: #fdfdfd;
+    --clr-label-focus: #b003f4;
+    --clr-label: rgb(0, 0, 0);
+    --clr-input: rgb(0, 0, 0);
+    --clr-bg-input: whilte;
+    --clr-bg-dropdown-avatar: #f1f1f1;
+    --clr-bg-card-avatar: #f1f1f1;
+    --clr-des: var(--gray);
+    --clr-shadow-item: #c6eed3;
+    --clr-shadow-logo: rgba(73, 240, 231, 0.863);
+    --clr-led-logo: #ec7de7;
+    --clr-login-form: #f6f6f6;
+    --clr-span-button: #200ef1;
+    --clr-topic: var(--black);
+    --foreground: var(--black);
+    --background: var(--white);
+    --clr-text-chooseQuiz: #000;
+    --clr-chooseQuiz: #f1f1f1;
+    --clr-bgr-input: #fff;
+    --clr-text-input: #000;
+}
