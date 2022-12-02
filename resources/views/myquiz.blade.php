@@ -32,9 +32,9 @@
             <div class="my_quizz_section-2">
                 <div class="quizzes_section">
                     @if (count($listMyQuiz) > 0)
-                        <div class="row">
+                        <div class="row quizz_wrapper">
                             @foreach ($listMyQuiz as $item)
-                                <div class="c-4">
+                                <div class="quizz_item">
                                     <div class="quizzes_section_item ">
                                         <img src="{{ url('/storage/images/category/' . $item['thumb']) }}" alt=""
                                             class="img">

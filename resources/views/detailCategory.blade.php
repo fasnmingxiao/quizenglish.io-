@@ -14,7 +14,10 @@
                             {{ $data->name }}
                         </div>
                         <div class="text_sub">
-                            {{ $data->description }}
+                            <p>
+                                {{ $data->description }}
+                            </p>
+
                         </div>
                         <div class="wrap-2" style="width:100%">
                             <div class="lession">
