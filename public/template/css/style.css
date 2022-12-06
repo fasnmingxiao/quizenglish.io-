@@ -65,6 +65,11 @@ html {
 }
 
 /* .. */
+
+.timeCountDown {
+    font-size: 20px;
+}
+
 .fullName {
     font-family: "Open Sans";
     font-style: normal;
@@ -77,6 +82,7 @@ html {
 
 .breadcrumb {
     background-color: unset !important;
+    font-family: "Lato";
 }
 
 .breadcumb a {
@@ -101,7 +107,7 @@ html {
     font-weight: 700;
     font-size: 36px;
     line-height: 61px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     color: var(--black);
 }
 
@@ -977,7 +983,7 @@ html {
 }
 
 .my_quizz_section-2 {
-    margin-top: 45px;
+    margin-top: 70px;
 }
 
 .my_quizz_section-2 .quizz_wrapper {
@@ -1084,7 +1090,7 @@ html {
 .start_quizz .list_quizz {
     padding: 40px;
     background: var(--clr-chooseQuiz);
-    width: 920px;
+    width: 760px;
     border-radius: 18px;
 }
 
@@ -1102,8 +1108,8 @@ html {
     width: 100%;
     font-family: "Open Sans";
     font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 18px;
     line-height: 27px;
 }
 
@@ -1207,14 +1213,14 @@ html {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 34px;
     color: var(--black);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .start_quizz .question {
-    width: 380px;
+    width: 330px;
     padding: 25px;
     border-radius: 18px;
     background: var(--clr-chooseQuiz);
@@ -1234,18 +1240,21 @@ html {
     border-radius: 4px;
     text-align: center;
     display: inline-block;
-    margin: 8px;
+    margin: 3px;
+    font-size: 20px;
 }
 
 .start_quizz .submit_question {
     color: var(--white);
     background-color: var(--blue);
-    padding: 12px 50px;
+    padding: 10px 40px;
     border-radius: 10px;
     border: none;
     outline: none;
-    margin: 38px auto 0;
+    margin: 30px auto 0;
     display: block;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .quizz_result {
@@ -2009,8 +2018,9 @@ html {
     font-size: 20px;
 }
 .list_quizz .question-title {
-    font-size: 30px;
-    padding: 25px;
+    font-size: 24px;
+    padding-bottom: 25px;
+    font-weight: 600;
 }
 
 .question-item .question-title {
@@ -2193,6 +2203,7 @@ html {
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 .nodata {
     font-family: "Lato";

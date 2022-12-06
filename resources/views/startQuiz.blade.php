@@ -42,8 +42,8 @@
                     </div>
                 </form>
                 <div class="question">
-                    <div class="d-flex mb-5" id="wp-countdown">
-                        <i class="fas fa-clock mr-3"></i>
+                    <div class="d-flex" id="wp-countdown">
+                        <i class="fas fa-clock mr-3" style="font-size: 20px"></i>
                         <div class="timeCountDown" data-time="{{ $time }}"
                             data-id="{{ $listQuestion[0]['quizcategories']['id'] }}"></div>
 
