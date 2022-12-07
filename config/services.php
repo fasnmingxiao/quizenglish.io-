@@ -30,4 +30,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env(key: 'GOOGLE_CLIENT_ID'),
+        'client_secret' => env(key: 'GOOGLE_CLIENT_SECRET'),
+        'redirect' => 'http://quizpractice.com:8080/login/google/callback',
+    ],
+
+    'facebook' => [
+        'client_id' => env(key: 'FACEBOOK_CLIENT_ID'),
+        'client_secret' => env(key: 'FACEBOOK_CLIENT_SECRET'),
+        'redirect' => 'http://quizpractice.com:8080/login/facebook/callback',
+    ],
 ];

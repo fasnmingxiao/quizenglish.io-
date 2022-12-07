@@ -24,6 +24,16 @@ Route::get('/403', function () {
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
+
+//Google Login
+Route::get('login/google', [App\Http\Controllers\UserController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [App\Http\Controllers\UserController::class, 'handleGoogleCallback']);
+
+//Facebook Login
+Route::get('login/facebook', [App\Http\Controllers\UserController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [App\Http\Controllers\UserController::class, 'handleFacebookCallback']);
+
+
 //Client
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login');

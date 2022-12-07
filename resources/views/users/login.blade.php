@@ -30,8 +30,12 @@
                                 </button>
                                 <p class="text">or login with</p>
                                 <div class="another">
-                                    <img src="{{ asset('/template/img/Google.png') }}" class="item">
-                                    <img src="{{ asset('/template/img/Facebook.png') }}" class="item">
+                                    <a href="{{ route('login.google') }}"><img src="{{ asset('/template/img/Google.png') }}"
+                                            class="item"></a>
+
+                                    <a href="{{ route('login.facebook') }}"> <img
+                                            src="{{ asset('/template/img/Facebook.png') }}" class="item"></a>
+
                                 </div>
                             </form>
                             <img class="form_bg" src="{{ asset('/template/img/Illusttration.png') }}" alt="...">

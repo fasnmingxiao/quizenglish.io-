@@ -7,11 +7,13 @@ use App\Http\Requests\Users\LoginRequest;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateRequest;
 use App\Http\Services\UserService\UserService;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -20,6 +22,52 @@ class UserController extends Controller
     {
         $this->userService = $userService;
     }
+
+    // Google login
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    // Google callback|
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+
+        $this->_registerOrLoginUser($user);
+
+        return redirect()->route('home');
+    }
+
+    // Facebook login
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    // Facebook callback|
+    public function handleFacebookCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        $this->_registerOrLoginUser($user);
+
+        return redirect()->route('home');
+    }
+
+    protected function _registerOrLoginUser($data)
+    {
+        $user = User::where('email', '=', $data->email)->first();
+        if (!$user) {
+            $user = new User();
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->avatar = $data['avatar'];
+            $user->save();
+        }
+        Auth::login($user);
+    }
+
     public function login()
     {
         return view('users.login', ['title' => 'Login']);
