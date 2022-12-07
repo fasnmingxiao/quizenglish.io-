@@ -26,7 +26,7 @@ class TopicAdminController extends Controller
     function index_db()
     {
         $data = $this->categoryService->getAll();
-        return view('admin.topic_db', ['title' => 'Topic & Category', 'data' => $data, 'listTopic' => $this->categoryService->getAll()]);
+        return view('admin.topic_db', ['title' => 'Topic & Category', 'data' => $data, 'listTopic' => $this->categoryService->getAll(), 'active'=> 'topic']);
     }
     function add_topic()
     {

@@ -45,6 +45,7 @@
                 dataType: "JSON",
                 url: '/admin/add-topic/' + key,
                 success: function(data) {
+                    console.log(data);
                     if (Object.values(data).length == '') {
                         $('#button-add').attr('disabled', false);
                         $('.icon-check').hide().html(

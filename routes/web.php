@@ -56,10 +56,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/upload/remove', [UploadController::class, 'remove']);
 
     Route::group(['prefix' => 'admin', 'middleware' => ['is-admin']], function () {
-        Route::get('/topic', [TopicAdminController::class, 'index'])->name('admin.topic');
+        // Route::get('/topic', [TopicAdminController::class, 'index'])->name('admin.topic');
         Route::get('/db/topic', [TopicAdminController::class, 'index_db'])->name('db.topic.view');
-        Route::get('/db/topic/add', [TopicAdminController::class, 'add_topic'])->name('db.topic.add');
-        Route::get('/db/category/add', [TopicAdminController::class, 'add_category'])->name('db.category.add');
+        // Route::get('/db/topic/add', [TopicAdminController::class, 'add_topic'])->name('db.topic.add');
+        // Route::get('/db/category/add', [TopicAdminController::class, 'add_category'])->name('db.category.add');
         Route::get('/add-topic/{name}', [TopicAdminController::class, 'checkUnique']);
         Route::post('/add-topic', [TopicAdminController::class, 'createTopic']);
         Route::put('/update-topic', [TopicAdminController::class, 'update']);
@@ -73,7 +73,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/UpdateCategory', [TopicAdminController::class, 'UpdateCat']);
 
         Route::get('/listQuizTest/{id}', [QuizzCategoryController::class, 'show']);
-        Route::get('/Quiz', [QuizzCategoryController::class, 'quiz_db'])->name('db.quiz');
+        Route::get('/add-quiz', [QuizzCategoryController::class, 'quiz_db'])->name('db.quiz');
+        Route::get('/list-quiz', [QuizzCategoryController::class, 'quiz_list'])->name('db.quiz_list');
         Route::get('/QuizTest/{id}', [QuizzCategoryController::class, 'get']);
 
         Route::get('/ListQuizTest/{id}', [QuizzCategoryController::class, 'getQuestion']);

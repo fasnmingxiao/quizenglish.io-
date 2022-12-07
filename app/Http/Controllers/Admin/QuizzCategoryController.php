@@ -28,7 +28,11 @@ class QuizzCategoryController extends Controller
     }
     function quiz_db()
     {
-        return view('admin.quiz_db', ['title' => 'Quiz', 'listTopic' => $this->categoryService->getAll(), 'quizs' => $this->quizCategoryService->paginate(),]);
+        return view('admin.quiz_db', ['title' => 'Quiz', 'listTopic' => $this->categoryService->getAll(), 'quizs' => $this->quizCategoryService->paginate(), 'active' => 'add_quiz']);
+    }
+    function quiz_list()
+    {
+        return view('admin.quiz_list', ['title' => 'Quiz', 'listTopic' => $this->categoryService->getAll(), 'quizs' => $this->quizCategoryService->paginate(), 'active' => 'list_quiz']);
     }
     function store(Request $request)
     {

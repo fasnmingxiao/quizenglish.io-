@@ -90,9 +90,6 @@
                         <a class="menu_link nav-link" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="menu_link nav-link" href="{{ route('admin.topic') }}">Topic</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="menu_link nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                     <?php
