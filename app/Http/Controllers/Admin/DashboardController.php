@@ -29,6 +29,6 @@ class DashboardController extends Controller
         $conclusion_today = $this->conclusionService->get_exam_today();
         $users = $this->userService->get_dashboard();
         $report = $this->reportService->get_dashboard();
-        return view('admin.dashboard', ['title' => 'Dashboard', 'reports' => $report, 'users' => $users, 'quiz_today' => $quiz_today, 'user_today' => $user_today, 'conclusion_today' => $conclusion_today]);
+        return view('admin.dashboard', ['title' => 'Dashboard', 'reports' => $report, 'users' => $users, 'quiz_today' => $quiz_today, 'user_today' => $user_today, 'conclusion_today' => $conclusion_today, 'active' => 'dashboard']);
     }
 }

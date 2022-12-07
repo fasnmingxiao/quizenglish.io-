@@ -42,6 +42,9 @@ class UserController extends Controller
     public function store(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            if (Auth::user()->role == 1) {
+                return redirect()->route('dashboard')->with(['active' => 'dashboard']);;
+            }
             return  redirect()->route('home');
         }
         Session::flash('error', 'Email hoặc mật khẩu không đúng');

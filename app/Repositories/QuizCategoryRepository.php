@@ -38,7 +38,7 @@ class QuizCategoryRepository
     }
     function paginate()
     {
-        return $this->quizCategory->with(['question', 'catTopic'])->paginate(10);
+        return $this->quizCategory->with(['question', 'catTopic'])->paginate(1);
     }
     function get($id)
     {

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     protected $quizCategoryService;
-    
+
     protected $questionService;
     function __construct(QuizCategoryService $quizCategoryService, QuestionService $questionService)
     {
@@ -45,7 +45,7 @@ class QuestionController extends Controller
             $quizs =  $this->quizCategoryService->getall();
             return view('admin.inc.table_question', compact('data', 'quizs', 'noOptions', 'noHasCorrect'))->render();
         }
-        return view('admin.question_db', ['title' => 'Questions & Options', 'data' => $data, 'quizs' =>  $this->quizCategoryService->getall(), 'noHasCorrect' => $noHasCorrect, 'noOptions' => $noOptions]);
+        return view('admin.question_db', ['title' => 'Questions & Options', 'data' => $data, 'quizs' =>  $this->quizCategoryService->getall(), 'noHasCorrect' => $noHasCorrect, 'noOptions' => $noOptions, 'active' => 'question']);
     }
     function create($id)
     {

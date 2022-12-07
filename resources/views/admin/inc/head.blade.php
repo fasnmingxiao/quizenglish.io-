@@ -8,29 +8,55 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
-        rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="{{ asset('/template/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+    <!-- inject:css-->
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('/template/dashboard/css/bootstrap.min.css') }}" rel="stylesheet">
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/bootstrap/bootstrap.css') }}">
 
-    <!-- Template Stylesheet -->
-    <link href="{{ asset('/template/dashboard/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/daterangepicker.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/fontawesome.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/footable.standalone.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/fullcalendar@5.2.0.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/jquery-jvectormap-2.0.5.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/jquery.mCustomScrollbar.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/leaflet.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/line-awesome.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/magnific-popup.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/MarkerCluster.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/MarkerCluster.Default.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/select2.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/slick.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/star-rating-svg.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/trumbowyg.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/wickedpicker.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/style.css') }}">
+
+    <!-- endinject -->
+
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
+
     {{-- toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>

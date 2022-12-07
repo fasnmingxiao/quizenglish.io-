@@ -52,21 +52,21 @@ function tree_topic($array, $parent_id = 0, $char = '')
     foreach ($array as $key => $item) {
         if ($item['parent_id'] == $parent_id) {
             echo '<tr>';
-            echo '<th scope="row">1</th>';
-            echo '<td>' . $char . $item['name'] . '</td>';
-            echo '<td>' . type_topic($item['parent_id']) . '</td>';
-            echo '<td>' . $item['description'] . '</td>';
-            echo '<td><img class="thumb-table" src="' . url('storage/images/category/' . check_img_topic($item['thumb']) . '') . '" alt=""></td>';
-            echo '<td>' . date('Y-m-d', strtotime($item['created_at'])) . '</td>';
-            echo '<td>';
-            echo '<button type="button" data-id="' . $item['id'] . '" class="edit-button btn btn-outline-info m-2">Edit</button>';
-            echo '<button onclick = "deleteTopic(' . $item['id'] . ')" data-id ="' . $item['id'] . '" type="button" class="btn btn-outline-danger m-2">Delete</button>';
-            echo '</td>';
-            echo '</tr>';
+            echo '<td>  <div class="userDatatable-content">' . $char . $item['name'] . '</div></td>';
+            echo '<td>  <div class="userDatatable-content">' . type_topic($item['parent_id']) . '</div> </td>';
+            echo '<td><div class="userDatatable-content">' . $item['description'] . '</div></td>';
+            echo '<td><img style="width:50px;" class="thumb-table" src="' . url('storage/images/category/' . check_img_topic($item['thumb']) . '') . '" alt=""></td>';
+            echo '<td> <div class="userDatatable-content">' . date('Y-m-d', strtotime($item['created_at'])) . '</div></td>';
+            echo '<td> <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">';
+            echo '<li> <a  href="#" data-id="' . $item['id'] . '" class="edit-button edit"><span  data-feather="edit"></span></a></li>';
+            echo '<li><a  href="#" onclick = "deleteTopic(' . $item['id'] . ')" data-id ="' . $item['id'] . '" class="remove"><span data-feather="trash-2"></span></a> </li>';
+            echo '</ul></td>';
+            echo '</ul></tr>';
             unset($array[$key]);
             tree_topic($array, $item['id'], $char . '--');
         }
     }
+    
 }
 function check_img_topic($img)
 {

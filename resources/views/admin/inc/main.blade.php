@@ -2,16 +2,31 @@
 <html lang="en">
 @include('admin.inc.head')
 
-<body>
-    <div class="container-fluid position-relative d-flex p-0">
-        @include('admin.inc.spinner')
-        @include('admin.inc.sidebar')
-
-        @yield('content')
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+<body class="layout-light side-menu overlayScroll">
+    <div class="mobile-search">
+        <form class="search-form">
+            <span data-feather="search"></span>
+            <input class="form-control mr-sm-2 box-shadow-none" type="text" placeholder="Search...">
+        </form>
     </div>
-    @include('admin.inc.footer')
+    @include('admin.inc.header')
+    <main class="main-content">
+        @include('admin.inc.sidebar')
+        @yield('content')
+        @include('admin.inc.footer')
+    </main>
+
+    <div id="overlayer">
+        <span class="loader-overlay">
+            <div class="atbd-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </span>
+    </div>
+   @include('admin.inc.scripts')
 </body>
 
 </html>
