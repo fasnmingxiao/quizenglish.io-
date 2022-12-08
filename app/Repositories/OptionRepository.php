@@ -16,9 +16,19 @@ class OptionRepository
     {
         return $this->option->create($attributes);
     }
+    function getAll(){
+        return $this->option->with(['question'])->get();
+    }
+    function getAlloffset($offset, $limit){
+        return $this->option->with(['question'])->offset($offset)->limit($limit)->get();
+    }
     function checkOptionUnique($option, $idQuestion)
     {
         return $this->option->where('question_id', '=', $idQuestion)->where('value', '=', $option)->first();
+    }
+    function getById($id)
+    {
+        return $this->option->find($id);
     }
     function getByQuestion($id)
     {

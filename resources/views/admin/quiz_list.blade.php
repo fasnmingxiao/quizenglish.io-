@@ -122,7 +122,7 @@
                                                     <div class="userDatatable-content">{{ $item->name }}</div>
                                                 </td>
                                                 <td>
-                                                    <div class="userDatatable-content">{!! $item->description !!}</div>
+                                                    <div style="padding-top:17px;" class="userDatatable-content">{!! $item->description !!}</div>
                                                 </td>
                                                 <td>
                                                     <div class="userDatatable-content">{{ count($item->question) }}

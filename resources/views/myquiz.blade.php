@@ -114,7 +114,7 @@
                     } else {
                         html = '<div class="row">';
                         rs.map(function(item) {
-                            html += '<div class="c-4">';
+                            html += '<div class="c-4 mr-5 mb-3">';
                             html += '<div class="quizzes_section_item ">';
                             html += '<img src="/storage/images/category/' + item.thumb +
                                 '"class = "img" >';

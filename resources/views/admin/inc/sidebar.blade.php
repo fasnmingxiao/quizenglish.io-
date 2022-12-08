@@ -45,6 +45,13 @@
                         <span class="menu-text">Question</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('db.option') }}"
+                        class="{{ !empty($active) && $active == 'option' ? 'active' : '' }}">
+                        <span data-feather="calendar" class="nav-icon"></span>
+                        <span class="menu-text">Option</span>
+                    </a>
+                </li>
 
             </ul>
         </div>
