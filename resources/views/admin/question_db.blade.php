@@ -153,7 +153,7 @@
                                                                         </svg></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" data-id="{{ $item->id }}"
+                                                                    <a href="#" data-id="{{ $item->id }}" onclick="deleteQuestion({{ $item->id }})"
                                                                         class="remove delete-button">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
