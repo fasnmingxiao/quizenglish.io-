@@ -30,7 +30,7 @@
                         <img src="{{ asset('/template/img/Vector 5.png') }}" alt="" class="   vector_bot">
                         <div class="section-2_main row">
                             <div class="section-2_head">
-                                Quizzy comes with
+                                QuizzEng comes with
                                 amazing <p style="color: var(--blue); display: inline-block;">features </p> like:
                             </div>
                             <div class="item--wrapper">
@@ -83,7 +83,7 @@
                 <div class="col">
                     <div class="section-3">
                         <div class="section-3_head">
-                            Let’ checkout your
+                            Let’s checkout your
                             <p style="color: var(--blue); display: inline-block;">learning </p>
                             journey
                         </div>

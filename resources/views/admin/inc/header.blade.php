@@ -4,7 +4,7 @@
             <a href="" class="sidebar-toggle">
                 <img class="svg" src="{{ asset('/img/svg/bars.svg') }}" alt="img"></a>
             <a class="navbar-brand" href="{{ route('dashboard') }}"><img class="dark"
-                    src="{{ asset('/img/logo_dark.png') }}" alt="svg"><img class="light"
+                    src="{{ asset('/img/logo_quizz.png') }}" alt="svg"><img class="light"
                     src="{{ asset('/img/logo_white.png') }}" alt="img"></a>
             <form action="/" class="search-form">
                 <span data-feather="search"></span>

@@ -1,8 +1,8 @@
 /*
 Template Name: Striking Dash
-Template URI: 
+Template URI:
 Author: Aazztech
-Author URI: 
+Author URI:
 Version: 1.1.0
 NB: this file contains the list of components/scss partial along with the style.scss contents order.
 */
@@ -20553,6 +20553,7 @@ body:after {
 
 .footer-copyright {
   padding-left: 12px;
+  float: right;
 }
 @media only screen and (max-width: 767px) {
   .footer-copyright {
