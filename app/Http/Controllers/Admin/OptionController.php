@@ -13,10 +13,18 @@ class OptionController extends Controller
     {
         $this->optionSerivce = $optionSerivce;
     }
+    function index() {
+        return view('admin.option_db', ['title' => 'Options', 'active' => 'option']);
+    }
     function store(Request $request)
     {
         $option = $this->optionSerivce->store($request);
         return response()->json($option);
+    }
+    function ajaxGetOption(Request $request)
+    {
+        $data= $this->optionSerivce->ajaxGetOption($request->all());
+        return response()->json($data);
     }
     function new()
     {
@@ -72,5 +80,10 @@ class OptionController extends Controller
         }
         $option = $this->optionSerivce->update($request);
         return response()->json($option);
+    }
+    function ajaxGetOptionByid($id)
+    {
+        $data= $this->optionSerivce->getById($id);
+        return response()->json($data);
     }
 }

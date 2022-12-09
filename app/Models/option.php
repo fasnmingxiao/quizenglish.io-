@@ -14,4 +14,5 @@ class option extends Model
     {
         return $this->belongsTo(question::class, 'question_id', 'id');
     }
+
 }

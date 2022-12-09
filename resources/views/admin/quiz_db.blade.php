@@ -117,9 +117,9 @@
                                             @endif
                                         </select>
                                     </div>
-                                    <div class="col-md-12 mb-25">
+                                    {{-- <div class="col-md-12 mb-25">
                                         <textarea class="form-control" placeholder="Description" id="description" name="description"></textarea>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="layout-button mt-0">
                                             <button type="submit"

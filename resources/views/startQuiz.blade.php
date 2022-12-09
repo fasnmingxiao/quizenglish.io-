@@ -53,7 +53,7 @@
                         @if (count($listQuestion) > 0)
                             @php
                                 $ntt = 0;
-
+                                
                             @endphp
                             @foreach ($listQuestion as $item)
                                 @php
@@ -125,7 +125,6 @@
                 }
                 time--;
             }
-
         })
     </script>
     <script>

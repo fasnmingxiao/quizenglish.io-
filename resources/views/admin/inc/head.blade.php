@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/trumbowyg.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/assets/vendor_assets/css/wickedpicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 
     <link rel="stylesheet" href="{{ asset('/style.css') }}">
 

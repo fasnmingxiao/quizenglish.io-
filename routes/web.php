@@ -92,13 +92,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/QuestionByQuiz/{id}', [QuestionController::class, 'getQuestionByQuiz']);
 
         Route::post('/add-option', [OptionController::class, 'store']);
+        Route::get('/option', [OptionController::class, 'index'])->name('db.option');
+        Route::post('/ajax/option', [OptionController::class, 'ajaxGetOption'])->name('ajax.option');
+        Route::get('/ajax/option/{id}', [OptionController::class, 'ajaxGetOptionByid'])->name('ajax.option.id');
         Route::get('/option/new', [OptionController::class, 'new']);
         Route::post('/checkOptionUnique', [OptionController::class, 'checkOptionUnique']);
         Route::post('/addOptionAndUpdate', [OptionController::class, 'storeAjax']);
         Route::get('/get-option/{id}', [OptionController::class, 'getByQuestion']);
         Route::get('/option/{id}/get', [OptionController::class, 'edit']);
         Route::get('/option/{id}/delete', [OptionController::class, 'delete']);
-        Route::post('/UpdateOption', [OptionController::class, 'update']);
+        Route::post('/UpdateOption', [OptionController::class, 'update'])->name('ajax.option.update');
     });
 
     Route::middleware('is-member')->group(function () {

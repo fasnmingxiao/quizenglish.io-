@@ -51,14 +51,12 @@
                                                             <div style="top:10%;right:15px"
                                                                 class="icon-check position-absolute"></div>
                                                         </div>
-
-
                                                     </div>
                                                     <div class="button-group d-flex pt-25">
                                                         <button
                                                             class="btn btn-primary btn-default btn-squared text-capitalize">save
                                                         </button>
-                                                        <button type="submit"
+                                                        <button data-dismiss="modal"
                                                             class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
                                                         </button>
                                                     </div>
@@ -140,7 +138,7 @@
                                                         <button
                                                             class="btn btn-primary btn-default btn-squared text-capitalize">save
                                                         </button>
-                                                        <button
+                                                        <button data-dismiss="modal"
                                                             class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
                                                         </button>
                                                     </div>
@@ -155,8 +153,8 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content  radius-xl">
                                         <div class="modal-header">
-                                            <h6 class="modal-title fw-500" id="staticBackdropLabel">UPDATE TOPIC &
-                                                CATEGORY</h6>
+                                            <h6 class="modal-title fw-500" id="staticBackdropLabel">Update topic &
+                                                Category</h6>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span data-feather="x"></span>
@@ -196,9 +194,8 @@
                                                     </div>
                                                     <input type="hidden" name="old_thumb" class="old_thumb">
                                                     <div class="custom-file" id="UploadNewThumb">
-                                                        <input class="form-control bg-dark" type="file"
-                                                            id="editThumbCategory" name="file"
-                                                            onchange="filePreview(this)">
+                                                        <input class="form-control" type="file" id="editThumbCategory"
+                                                            name="file" onchange="filePreview(this)">
 
                                                         <script>
                                                             var loadFile = function(event) {
@@ -228,7 +225,7 @@
                                                         <button
                                                             class="btn btn-primary btn-default btn-squared text-capitalize">Update
                                                         </button>
-                                                        <button
+                                                        <button data-dismiss="modal"
                                                             class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
                                                         </button>
                                                     </div>
@@ -450,13 +447,23 @@
                 dataType: "JSON",
                 url: '/admin/add-topic/' + key,
                 success: function(data) {
-                    console.log(data);
+                    // console.log(Object.values(data));
+                    // console.log(key === '@');
                     if (Object.values(data).length == '') {
-                        $('#button-add').attr('disabled', false);
-                        $('.icon-check').hide().html(
-                            '<i class="fas fa-check" style="color: #33ed53;font-size: 15px;line-height: 38px;margin-left: 5px;"></i>'
-                        ).fadeIn(500);
+                        if (key === '@') {
+                            $('#button-add').attr('disabled', true);
+                            toastr.error('Topic must not have special characters');
+                            $('.icon-check').hide().html(
+                                '<i class="fas fa-times" style="color: #f00;font-size: 24px;line-height: 38px;margin-left: 5px;"></i>'
+                            ).fadeIn(500)
+                        } else {
+                            $('#button-add').attr('disabled', false);
+                            $('.icon-check').hide().html(
+                                '<i class="fas fa-check" style="color: #33ed53;font-size: 15px;line-height: 38px;margin-left: 5px;"></i>'
+                            ).fadeIn(500);
+                        }
                     } else {
+
                         $('#button-add').attr('disabled', true);
                         toastr.error('Topic has exists');
                         $('.icon-check').hide().html(

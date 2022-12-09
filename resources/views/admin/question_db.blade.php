@@ -154,6 +154,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <a href="#" data-id="{{ $item->id }}"
+                                                                        onclick="deleteQuestion({{ $item->id }})"
                                                                         class="remove delete-button">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
@@ -192,7 +193,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                             </div><!-- End: .userDatatable -->
 
@@ -285,7 +286,7 @@
                             <div class="button-group d-flex pt-25">
                                 <button class="btn btn-primary btn-default btn-squared text-capitalize">Update
                                 </button>
-                                <button
+                                <button data-dismiss="modal"
                                     class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
                                 </button>
                             </div>
@@ -327,7 +328,8 @@
                         <div class="option-show">
 
                         </div>
-                        <button id="submit-add-option" style="width: 100%; background-color: #2e80ff; display: none;"
+                        <button id="submit-add-option"
+                            style="width: 100%; background-color: #2e80ff; display: none; margin-top: 15px;"
                             type="submit" class="btn btn-secondary">Add
                             Option</button>
                     </form>
