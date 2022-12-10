@@ -5,6 +5,9 @@
             @include('breadcumb')
             <div class="text_heading">{{ $title }}</div>
             <div id="score" style="padding:20px 0; font-size:20px;text-align:center;font-weight:700;"></div>
+            <div class="question-cat">
+                {{ $listQuestion[0]['question'] }}
+            </div>
             <div class="start_quizz">
                 <form action="">
                     <div class="list_quizz">
@@ -53,7 +56,7 @@
                         @if (count($listQuestion) > 0)
                             @php
                                 $ntt = 0;
-                                
+
                             @endphp
                             @foreach ($listQuestion as $item)
                                 @php
@@ -71,7 +74,9 @@
                 </div>
             </div>
         </div>
-        <div class="container text-center" style="display:none" id="subResult">
+        <div class="container text-center" style="display:none; margin-top: 35px;" id="subResult">
+            <a href="{{ route('member.myquiz') }}" class="btn"
+                style=" padding: 15px 20px; background-color: tomato; color: white">Back</a>
             <a href="{{ $_SERVER['REQUEST_URI'] }}" class="btn btn-info"
                 style=" padding: 15px 20px; background-color: var(--blue);">Try Again</a>
             <button type="button" id="two" class="btn btn-danger button-mdal">Report
@@ -174,6 +179,7 @@
                 success: function(data) {
                     $('#subResult').css('display', 'block');
                     $('.start_quizz').remove();
+                    $('.question-cat').remove();
                     $('#show_content').append(data.data);
                     $('#score').html(data.score);
                 }

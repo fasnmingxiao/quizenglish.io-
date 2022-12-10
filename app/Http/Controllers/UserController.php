@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -55,8 +57,11 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
+
+
     protected function _registerOrLoginUser($data)
     {
+
         $user = User::where('email', '=', $data->email)->first();
         if (!$user) {
             $user = new User();

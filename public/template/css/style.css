@@ -569,7 +569,7 @@ html {
     text-decoration: none;
     color: var(--gray);
     display: block;
-    margin-bottom: 75px;
+    margin-bottom: 30px;
     text-align: right;
 }
 
@@ -666,7 +666,7 @@ html {
     outline: none;
     border: none;
     cursor: pointer;
-    margin: 40px auto;
+    margin: 25px auto;
     display: block;
 }
 
@@ -1093,6 +1093,7 @@ html {
     background: var(--clr-chooseQuiz);
     width: 760px;
     border-radius: 18px;
+    margin-bottom: 20px;
 }
 
 .start_quizz .question {
@@ -1210,10 +1211,20 @@ html {
     }
 }
 
-.start_quizz .question .head {
+.question-cat {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.start_quizz .question .head {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
     font-size: 22px;
     line-height: 34px;
     color: var(--black);
@@ -2019,9 +2030,10 @@ html {
     font-size: 20px;
 }
 .list_quizz .question-title {
-    font-size: 24px;
+    font-size: 22px;
     padding-bottom: 25px;
     font-weight: 600;
+    line-height: 1.3;
 }
 
 .question-item .question-title {
@@ -2426,9 +2438,6 @@ html {
     display: inline-block;
     text-align: center;
     padding: 15px 20px;
-    margin: 20px 10px;
-    background: red;
-    font-size: 18px;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
