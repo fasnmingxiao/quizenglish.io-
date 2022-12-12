@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/add-quiz', [QuizzCategoryController::class, 'quiz_db'])->name('db.quiz');
         Route::get('/list-quiz', [QuizzCategoryController::class, 'quiz_list'])->name('db.quiz_list');
         Route::get('/QuizTest/{id}', [QuizzCategoryController::class, 'get']);
+        Route::post('/ajax/quiz', [QuizzCategoryController::class, 'ajaxGetQuiz'])->name('ajax.quiz');
 
         Route::get('/ListQuizTest/{id}', [QuizzCategoryController::class, 'getQuestion']);
         Route::post('/add-quizcategory', [QuizzCategoryController::class, 'store']);

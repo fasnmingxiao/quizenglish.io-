@@ -85,11 +85,14 @@
                 <div class="col-lg-12">
                     <div class="userDatatable global-shadow border p-30 bg-white radius-xl w-100 mb-30">
                         <div class="table-responsive">
-                            <table class="table mb-0 table-borderless">
+                            <table class="table mb-0 table-borderless" id="quiz_table">
                                 <thead>
                                     <tr class="userDatatable-header">
                                         <th>
-                                            <span class="checkbox-text userDatatable-title">Category</span>
+                                            <span class="userDatatable-title"> # </span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Category</span>
                                         </th>
                                         <th>
                                             <span class="userDatatable-title">Name</span>
@@ -111,76 +114,6 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @if (count($quizs) > 0)
-                                        @foreach ($quizs as $item)
-                                            <tr>
-                                                <td>
-                                                    <div class="userDatatable-content">{{ $item->catTopic->name }} </div>
-                                                </td>
-                                                <td>
-                                                    <div class="userDatatable-content">{{ $item->name }}</div>
-                                                </td>
-                                                <td>
-                                                    <div style="padding-top:17px;" class="userDatatable-content">{!! $item->description !!}</div>
-                                                </td>
-                                                <td>
-                                                    <div class="userDatatable-content">{{ count($item->question) }}
-                                                        questions</div>
-                                                </td>
-                                                <td>
-                                                    <div class="userDatatable-content">
-                                                        {{ config('constants.time_quiz.' . $item->time) }} minutes</div>
-                                                </td>
-                                                <td>
-                                                    <div class="userDatatable-content">{{ $item->created_at }}</div>
-                                                </td>
-                                                <td>
-                                                    <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
-                                                        <li>
-                                                            <a href="#" class="edit edit-button"
-                                                                data-id="{{ $item->id }}">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-edit">
-                                                                    <path
-                                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
-                                                                    </path>
-                                                                    <path
-                                                                        d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
-                                                                    </path>
-                                                                </svg></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" data-id="{{ $item->id }}"
-                                                                class="buttonDelete remove">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-trash-2">
-                                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                                    <path
-                                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                                    </path>
-                                                                    <line x1="10" y1="11" x2="10"
-                                                                        y2="17"></line>
-                                                                    <line x1="14" y1="11" x2="14"
-                                                                        y2="17"></line>
-                                                                </svg></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <th colspan="7">No data found</th>
-                                        </tr>
-                                    @endif
-                                </tbody>
                             </table>
                         </div>
                         <div class="d-flex justify-content-end pt-30">
@@ -195,13 +128,18 @@
 
     </div>
 
-    {{-- modal --}}
-    <div id="modal-container" class="update">
-        <div class="modal-background">
-            <div class="modal" style=" border-radius: 50px;">
-                <div class="report-content">
-                    <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">UPDATE QUIZZ</h6>
+    <div class="modal fade new-member" id="new-topic" role="dialog" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content  radius-xl">
+                <div class="modal-header">
+                    <h6 class="modal-title fw-500" id="staticBackdropLabel">UPDATE QUIZZ</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span data-feather="x"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="new-member-modal">
                         <form action="/admin/update-quizcategory" method="POST">
                             @csrf
                             @method('put')
@@ -209,14 +147,13 @@
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="quizCategoryName" id="setCategoryName"
                                     placeholder="Quiz Category title" required>
-                                <label for="setCategoryName">Name</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" placeholder="Description category" id="description" name="description"
                                     style="height: 150px;"></textarea>
-                                <label for="description">Description</label>
                             </div>
-                            <select id="TopicName" name="topic" class="form-select mb-3">
+                            <select class="js-example-basic-single js-states form-control mb-3" id="TopicName"
+                                name="topic" required>
                                 <option selected="">Choose Topic</option>
                                 @if (count($listTopic) > 0)
                                     @foreach ($listTopic as $value)
@@ -226,14 +163,17 @@
                                     @endforeach
                                 @endif
                             </select>
-                            <select id="setTime" name="time" class="form-select mb-3" required>
-                                <option value="">Choose Time</option>
-                                @if (count($listTopic) > 0)
-                                    @foreach (config('constants.time_quiz') as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }} minutes</option>
-                                    @endforeach
-                                @endif
-                            </select>
+                            <div class="form-floating mb-3">
+                                <select id="setTime" name="time"
+                                    class="js-example-basic-single js-states form-control " required>
+                                    <option value="">Choose Time</option>
+                                    @if (count($listTopic) > 0)
+                                        @foreach (config('constants.time_quiz') as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }} minutes</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">UPDATE SUBMIT</button>
                         </form>
                     </div>
@@ -241,7 +181,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('footer')
@@ -264,30 +203,130 @@
         });
     </script>
     <script>
+        $(document).ready(function () {
+            var datatable = $('#quiz_table').DataTable({
+                bAutoWidth: false,
+                stateSave: true,
+                processing: true,
+                serverSide: true,
+                searching: false,
+                "ordering": false,
+                order: [],
+                ajax: {
+                    data: {
+                        '_token': "{{ csrf_token() }}"
+                    },
+                    url: "{{ route('ajax.quiz') }}",
+                    type: "POST",
+                    dataSrc: function(response) {
+                        response.recordsTotal = response.recordsTotal;
+                        response.recordsFiltered = response.recordsTotal;
+                        response.draw = response.draw;
+                        return response.result;
+                    },
+                },
+                columns: [{
+                        data: 'id',
+                        orderable: false,
+                        className: ' userDatatable-content text-center media-middle',
+                        render: function(data, type, row, meta) {
+                            return datatable.page.info().start + (meta.row + 1);
+                        }
+                    },
+                    {
+                        data: "cat_name",
+                        orderable: true,
+                        className: 'text-center media-middle ',
+                        render: function(data, type, row) {
+                            return ' <div class="userDatatable-content">' + row.cat_name +
+                                '</div>';
+                        }
+                    },
+                    {
+                        data: "name",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return ' <div class="userDatatable-content">' + row.name +
+                                '</div>';
+                        }
+                    },
+                    {
+                        data: "description",
+                        orderable: false,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return '<div class="userDatatable-content">' + row.description + '</div>';
+                        }
+                    },
+                    {
+                        data: "qty_question",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return '<div class="userDatatable-content">' + row.qty_question + '</div>';
+                        }
+                    },
+                    {
+                        data: "times",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return '<div class="userDatatable-content">' + row.times + '</div>';
+                        }
+                    },
+                    {
+                        data: "action",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                    },
+
+                ],
+            });
+        });
+    </script>
+    <script>
         $('#quiz').addClass('active');
         $('.edit-button').on('click', function() {
             var buttonID = $(this).attr('id');
-            $("#modal-container.update").removeAttr("class").addClass(buttonID);
             var id = $(this).data('id');
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
                 url: '/admin/QuizTest/' + id,
                 success: function(data) {
+                    $('#new-topic').modal('show');
                     $('#setId').val(data.id);
                     $('#setCategoryName').val(data.name);
-                    $('#description').val(data.description);
+                    tinyMCE.get('description').setContent(data.description);
+                    $('#description').val();
                     $("#setTime").val(data.time);
                     $('#TopicName').val(data.cat_id);
                 }
             })
         })
         $('.buttonDelete').on('click', function() {
-            if (confirm('Are u sure?')) {
-                var id = $(this).data('id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    var id = $(this).data('id');
                 return window.location = `/admin/quizcategory/${id}/delete`;
-            }
+                }
             return false;
+
+            })
         })
     </script>
     @include('admin.inc.alert')

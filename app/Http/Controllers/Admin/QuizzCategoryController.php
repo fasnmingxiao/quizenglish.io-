@@ -26,6 +26,11 @@ class QuizzCategoryController extends Controller
             'listTime' => config('constants.time_quiz')
         ]);
     }
+    function ajaxGetQuiz(Request $request)
+    {
+        $data= $this->quizCategoryService->ajaxGetQuiz($request->all());
+        return response()->json($data);
+    }
     function quiz_db()
     {
         return view('admin.quiz_db', ['title' => 'Quiz', 'listTopic' => $this->categoryService->getAll(), 'quizs' => $this->quizCategoryService->paginate(), 'active' => 'add_quiz']);
@@ -52,7 +57,7 @@ class QuizzCategoryController extends Controller
     function delete($id)
     {
         $this->quizCategoryService->delete($id);
-        return redirect()->back();
+        return redirect()->route('db.quiz_list', ['page'=> '1']);
     }
     function show($id)
     {

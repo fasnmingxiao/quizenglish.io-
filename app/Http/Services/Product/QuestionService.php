@@ -26,7 +26,38 @@ class QuestionService
     }
     public function get($id)
     {
-        return $this->questionRepository->get($id);
+        $datas = $this->questionRepository->get($id);
+        $option_html = '';
+        foreach ($datas->options as $option) {
+            $option_html .= '<form action="" method="POST"> ' . @csrf_field() . '
+         <div class="form-group">
+             <div class="row">
+                 <div class="col-7">
+                     <input type="hidden" class="form-control" name="idOption" value="' . $option->id . '">
+                     <div class="form-group form-element-textarea" style="margin-bottom: 0;">
+                         <textarea class="form-control" id="option" name="option" style="height:50px;">' . $option->value . '</textarea>
+                     </div>
+                 </div>
+                 <div class="col-2" style="align-self: center;">
+                    <div class="checkbox-theme-default custom-checkbox ">
+                        <input class="checkbox" type="checkbox" id="check-'.$option->id.'" '. ($option->iscorrect ? 'checked' : '').'>
+                        <label for="check-'.$option->id.'">
+                            <span class="checkbox-text">
+                                Correct
+                            </span>
+                        </label>
+                    </div>
+                 </div>
+                 <div class="col-3" style="align-self: center;">
+                     <button class="btn btn-primary btn-default btn-squared btn-transparent-primary ">Update
+                     </button>
+                 </div>
+             </div>
+         </div>
+     </form>';
+        }
+        $datas->option = $option_html;
+        return $datas;
     }
     public function getAll()
     {

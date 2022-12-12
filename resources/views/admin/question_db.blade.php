@@ -153,7 +153,8 @@
                                                                         </svg></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" data-id="{{ $item->id }}" onclick="deleteQuestion({{ $item->id }})"
+                                                                    <a href="#" data-id="{{ $item->id }}"
+                                                                        onclick="deleteQuestion({{ $item->id }})"
                                                                         class="remove delete-button">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
@@ -192,7 +193,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                             </div><!-- End: .userDatatable -->
 
@@ -282,14 +283,16 @@
                                 <textarea class="form-control" placeholder="question " id="question" name="question" style="height: 150px;"
                                     required></textarea>
                             </div>
-                            <div class="button-group d-flex pt-25">
+                            <div class="button-group d-flex justify-content-center mb-2">
                                 <button class="btn btn-primary btn-default btn-squared text-capitalize">Update
-                                </button>
-                                <button
-                                    class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
                                 </button>
                             </div>
                         </form>
+                        <label>List Option</label>
+                        <div id="option_form">
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -363,12 +366,17 @@
                     datatype: "JSON",
                     url: '/admin/question/' + id,
                     success: function(result) {
+                        console.log(result);
                         $('#idquestion').val(result.id);
                         $('#question').val(result.question);
-                        $('#quizcategory_id').val(result.quizcategory_id)
+                        $('#quizcategory_id').val(result.quizcategory_id);
+                        $('#option_form').html(result.option);
                     },
                 })
             });
+            $(document).on('change', '.checkbox', function() {
+                    $('.checkbox').not(this).prop('checked', false);
+            })
             $("#button-filter").on('click', function() {
                 var quiz_id = $('#quizid').val();
                 var filter = $('input[name=btnradio]:checked').attr('id');

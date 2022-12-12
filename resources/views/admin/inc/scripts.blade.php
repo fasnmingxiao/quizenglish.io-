@@ -48,7 +48,7 @@
   <script src="{{ asset('/assets/theme_assets/js/leaflet-init.js') }}"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
-  <script src="https://cdn.tiny.cloud/1/1y0tl0vgu3udtg59uw1mckcuqavvsuo8j38v74c9dz17e24j/tinymce/6/tinymce.min.js"
+  <script src="https://cdn.tiny.cloud/1/gleip143otc5hwbqpehxcq3ujhh0uqf4b7p3sw9nrdth6p7p/tinymce/6/tinymce.min.js"
       referrerpolicy="origin"></script>
   <script script src="{{ asset('/assets/theme_assets/js/main.js') }}"></script>
 

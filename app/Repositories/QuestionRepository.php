@@ -18,7 +18,7 @@ class QuestionRepository
     }
     function get($id)
     {
-        return $this->question->find($id);
+        return $this->question->with('options')->find($id);
     }
     function getAll()
     {
