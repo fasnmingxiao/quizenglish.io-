@@ -112,6 +112,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     @if (count($quizs) > 0)
                                         @foreach ($quizs as $item)
                                             <tr>
