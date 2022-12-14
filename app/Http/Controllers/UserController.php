@@ -7,6 +7,7 @@ use App\Http\Requests\Users\LoginRequest;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateRequest;
 use App\Http\Services\UserService\UserService;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,10 +33,18 @@ class UserController extends Controller
     {
         return view('users.forgot', ['title' => 'Forgot Password']);
     }
-
+    function index() {
+        return view('admin.user_db', ['title' => 'User', 'active' => 'user']);
+    }
+    function ajaxGetUser(Request $request)
+    {
+        $data= $this->userService->ajaxGetUser($request->all());
+        return response()->json($data);
+    }
     public function create(StoreUserRequest $request)
     {
-        $this->userService->create($request->input());
+        $user = $this->userService->create($request->input());
+        event(new Registered($user));
         Session::flash('success', 'Register success!');
         return redirect()->route('home');
     }

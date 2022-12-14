@@ -46,10 +46,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('db.option') }}"
-                        class="{{ !empty($active) && $active == 'option' ? 'active' : '' }}">
+                    <a href="{{ route('db.user') }}"
+                        class="{{ !empty($active) && $active == 'user' ? 'active' : '' }}">
                         <span data-feather="calendar" class="nav-icon"></span>
-                        <span class="menu-text">Option</span>
+                        <span class="menu-text">User</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('management.index') }}"
+                        class="{{ !empty($active) && $active == 'management' ? 'active' : '' }}">
+                        <span data-feather="calendar" class="nav-icon"></span>
+                        <span class="menu-text">Management</span>
                     </a>
                 </li>
 

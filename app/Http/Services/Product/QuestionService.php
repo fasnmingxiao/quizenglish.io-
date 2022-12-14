@@ -29,32 +29,36 @@ class QuestionService
         $datas = $this->questionRepository->get($id);
         $option_html = '';
         foreach ($datas->options as $option) {
-            $option_html .= '<form action="" method="POST"> ' . @csrf_field() . '
-         <div class="form-group">
+            $option_html .= '
+         <div class="form-group" id="form-'. $option->id .'">
              <div class="row">
-                 <div class="col-7">
-                     <input type="hidden" class="form-control" name="idOption" value="' . $option->id . '">
+                 <div class="col-6">
+                     <input type="hidden" class="form-control" name="idOption-' . $option->id . '" value="' . $option->id . '">
                      <div class="form-group form-element-textarea" style="margin-bottom: 0;">
-                         <textarea class="form-control" id="option" name="option" style="height:50px;">' . $option->value . '</textarea>
+                         <textarea class="form-control" id="option-' . $option->id . '" name="option" style="height:50px;">' . $option->value . '</textarea>
                      </div>
                  </div>
                  <div class="col-2" style="align-self: center;">
                     <div class="checkbox-theme-default custom-checkbox ">
-                        <input class="checkbox" type="checkbox" id="check-'.$option->id.'" '. ($option->iscorrect ? 'checked' : '').'>
-                        <label for="check-'.$option->id.'">
+                        <input class="checkbox" type="checkbox" id="check-' . $option->id . '" ' . ($option->iscorrect ? 'checked' : '') . '>
+                        <label for="check-' . $option->id . '">
                             <span class="checkbox-text">
                                 Correct
                             </span>
                         </label>
                     </div>
                  </div>
-                 <div class="col-3" style="align-self: center;">
-                     <button class="btn btn-primary btn-default btn-squared btn-transparent-primary ">Update
+                 <div class="col-2" style="align-self: center;">
+                     <button class="btn btn-primary btn-default btn-squared btn-transparent-primary btn-update-option" data-id=' . $option->id . '>Update
+                     </button>
+                 </div>
+                 <div class="col-2" style="align-self: center;">
+                     <button class="btn btn-danger btn-default btn-squared btn-transparent-danger btn-delete-option" data-id=' . $option->id . '>Del
                      </button>
                  </div>
              </div>
          </div>
-     </form>';
+';
         }
         $datas->option = $option_html;
         return $datas;

@@ -66,7 +66,7 @@
                         }
                         ?>
                     <?php
-                        if(!empty(Auth::user()->role) && Auth::user()->role == 2)
+                        if(!empty(Auth::user()->role) && Auth::user()->role == 2 && Auth::user()->email_verified_at !== null)
                             {
                     ?>
                     <li class="nav-item active">
@@ -83,7 +83,7 @@
                         ?>
 
                     <?php
-                        if(!empty(Auth::user()->role) && Auth::user()->role == 1)
+                        if(!empty(Auth::user()->role) && Auth::user()->role == 1 && Auth::user()->email_verified_at !== null)
                             {
                     ?>
                     <li class="nav-item active">
@@ -105,13 +105,14 @@
                     @endif
                 </div>
                 <div class="wp_avatar">
-
                     <img src="{{ !empty(Auth::user()->avatar) ? url('/storage/images/users/300/' . Auth::user()->avatar) : asset('/template/img/user_default.png') }}"
                         class="avatar" alt="">
                     <div class="avatar-dropdown-content">
-                        <ul>
-                            <li><a href="{{ route('user.profile') }}">Personal information</a></li>
-                        </ul>
+                        @if (Auth::user()->email_verified_at !== null)
+                            <ul>
+                                <li><a href="{{ route('user.profile') }}">Personal information</a></li>
+                            </ul>
+                        @endif
                         <ul>
                             <li><a href="{{ route('logout') }}">Log out</a></li>
                         </ul>

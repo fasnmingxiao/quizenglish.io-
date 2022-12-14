@@ -8,12 +8,12 @@
 <body>
     <!--class="animsition" -->
 
-    <!-- Header -->
-    @include('header')
+        <!-- Header -->
+        @include('header')
 
-    @yield('content')
+        @yield('content')
 
-    @include('footer')
+        @include('footer')
 
 </body>
 

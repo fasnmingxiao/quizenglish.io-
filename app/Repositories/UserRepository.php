@@ -16,6 +16,12 @@ class UserRepository
     {
         return  $this->user->create($attributes);
     }
+    function getAll(){
+        return $this->user->with(['roles'])->get();
+    }
+    function getAlloffset($offset, $limit){
+        return $this->user->with(['roles'])->offset($offset)->limit($limit)->get();
+    }
     public function get_reg_today()
     {
         return $this->user->whereDate('created_at', Carbon::today())->count();

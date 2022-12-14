@@ -5,18 +5,19 @@ use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuizzCategoryController;
 use App\Http\Controllers\Admin\TopicAdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\MemberQuizController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\TestQuizController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UploadController;
-use App\Models\QuizCategory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Console\Question\Question;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 Route::get('/403', function () {
     return view('errors.403');
@@ -24,6 +25,10 @@ Route::get('/403', function () {
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
+Route::get('/email/verify', [AuthController::class, 'index'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', [AuthController::class, 'resend_token'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 //Client
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login');
@@ -37,7 +42,9 @@ Route::post('/user/store', [UserController::class, 'create'])->name('user.store'
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/{id}/Category-detail', [TopicController::class, 'showDetail']);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
+    Route::get('/user', [UserController::class, 'index'])->name('db.user');
+    Route::post('/ajax/user', [UserController::class, 'ajaxGetUser'])->name('ajax.user');
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::post('/change-password', [UserController::class, 'updatePass'])->name('user.changePassword');
     Route::put('/users', [UserController::class, 'update'])->name('users.update');
@@ -46,6 +53,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/upload/remove', [UploadController::class, 'remove']);
 
     Route::group(['prefix' => 'admin', 'middleware' => ['is-admin']], function () {
+    Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
+    Route::post('/remove/permission-from-role', [ManagementController::class, 'unsetpermission'])->name('management.unsetpermission');
+    Route::post('/get-permission-diff', [ManagementController::class, 'getPermissionDiff'])->name('management.getpermissiondiff');
+
         // Route::get('/topic', [TopicAdminController::class, 'index'])->name('admin.topic');
         Route::get('/db/topic', [TopicAdminController::class, 'index_db'])->name('db.topic.view');
         // Route::get('/db/topic/add', [TopicAdminController::class, 'add_topic'])->name('db.topic.add');
@@ -83,7 +94,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/QuestionByQuiz/{id}', [QuestionController::class, 'getQuestionByQuiz']);
 
         Route::post('/add-option', [OptionController::class, 'store']);
-        Route::get('/option', [OptionController::class, 'index'])->name('db.option');
         Route::post('/ajax/option', [OptionController::class, 'ajaxGetOption'])->name('ajax.option');
         Route::get('/ajax/option/{id}', [OptionController::class, 'ajaxGetOptionByid'])->name('ajax.option.id');
         Route::get('/option/new', [OptionController::class, 'new']);

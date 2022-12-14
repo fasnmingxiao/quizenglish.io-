@@ -13,11 +13,11 @@ class OptionController extends Controller
     {
         $this->optionSerivce = $optionSerivce;
     }
-    function index() {
-        return view('admin.option_db', ['title' => 'Options', 'active' => 'option']);
-    }
     function store(Request $request)
     {
+        if ($request->get('isCorrect') == 1) {
+            $this->optionSerivce->updateIsCorrect($request->get('idQuestion'));
+        }
         $option = $this->optionSerivce->store($request);
         return response()->json($option);
     }

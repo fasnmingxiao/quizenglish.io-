@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-main">
-                        <h4 class="text-capitalize breadcrumb-title">Option list</h4>
+                        <h4 class="text-capitalize breadcrumb-title">User list</h4>
                         <div class="breadcrumb-action justify-content-center flex-wrap">
                             <div class="action-btn">
 
@@ -85,20 +85,26 @@
                 <div class="col-lg-12">
                     <div class="userDatatable global-shadow border p-30 bg-white radius-xl w-100 mb-30">
                         <div class="table-responsive">
-                            <table id="option-table" class=" table mb-0 table-borderless">
+                            <table id="user-table" class=" table mb-0 table-borderless">
                                 <thead>
                                     <tr class="userDatatable-header">
                                         <th>
                                             <span class="userDatatable-title">#</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">Question</span>
+                                            <span class="userDatatable-title">User</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">Option</span>
+                                            <span class="userDatatable-title">Email</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">Is Correct</span>
+                                            <span class="userDatatable-title">Position</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Join Date</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Role</span>
                                         </th>
                                         <th>
                                             <span class="userDatatable-title">Action</span>
@@ -166,7 +172,7 @@
 @section('footer')
     <script>
         $(document).ready(function() {
-            var datatable = $('#option-table').DataTable({
+            var datatable = $('#user-table').DataTable({
                 bAutoWidth: false,
                 stateSave: true,
                 processing: true,
@@ -178,7 +184,7 @@
                     data: {
                         '_token': "{{ csrf_token() }}"
                     },
-                    url: "{{ route('ajax.option') }}",
+                    url: "{{ route('ajax.user') }}",
                     type: "POST",
                     dataSrc: function(response) {
                         response.recordsTotal = response.recordsTotal;
@@ -196,30 +202,44 @@
                         }
                     },
                     {
-                        data: "question_name",
+                        data: "img",
                         orderable: true,
                         className: 'text-center media-middle ',
                         render: function(data, type, row) {
-                            return ' <div class="userDatatable-content">' + row.question_name +
+                            return row.img;
+                        }
+                    },
+                    {
+                        data: "email",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return '<div class="userDatatable-content">' + row.email + '</div>';
+                        }
+                    },
+                    {
+                        data: "position",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return '<div class="userDatatable-content">' + row.position + '</div>';
+                        }
+                    },
+                    {
+                        data: "joindate",
+                        orderable: true,
+                        className: 'media-middle text-center media-middle',
+                        render: function(data, type, row) {
+                            return '<div class="userDatatable-content">' + row.joindate +
                                 '</div>';
                         }
                     },
                     {
-                        data: "value",
+                        data: "role_user",
                         orderable: true,
                         className: 'media-middle text-center media-middle',
                         render: function(data, type, row) {
-                            return ' <div class="userDatatable-content">' + row.value +
-                                '</div>';
-                        }
-                    },
-                    {
-                        data: "iscorrect",
-                        orderable: true,
-                        className: 'media-middle text-center media-middle',
-                        render: function(data, type, row) {
-                            return '<div class="userDatatable-content">' + (row.iscorrect ? 'true' :
-                                'false') + '</div>';
+                            return '<div class="userDatatable-content">' + row.role_user + '</div>';
                         }
                     },
                     {

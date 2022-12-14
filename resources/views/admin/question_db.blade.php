@@ -286,6 +286,10 @@
                             <div class="button-group d-flex justify-content-center mb-2">
                                 <button class="btn btn-primary btn-default btn-squared text-capitalize">Update
                                 </button>
+                                <button type="button" id="add_element_option"
+                                    class="btn btn-warning btn-default btn-squared text-capitalize">Add
+                                    new option
+                                </button>
                             </div>
                         </form>
                         <label>List Option</label>
@@ -375,7 +379,7 @@
                 })
             });
             $(document).on('change', '.checkbox', function() {
-                    $('.checkbox').not(this).prop('checked', false);
+                $('.checkbox').not(this).prop('checked', false);
             })
             $("#button-filter").on('click', function() {
                 var quiz_id = $('#quizid').val();
@@ -387,8 +391,140 @@
                     "&filter=" + filter;
 
             })
+            $("#add_element_option").on('click', function() {
+                if ($('#button_create').length > 0) {
+                    Swal.fire({
+                        target: document.getElementById('form-modal'),
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'You must submit add a question before adding a new one!',
+                    })
+                    $('.swal2-container').css("z-index", '999999');
+
+                } else {
+                    var questId = $('#idquestion').val();
+                    var input =
+                        '<div class="form-group" id="form_add_option"><div class="row"><div class="col-7">'
+                    input +=
+                        '<input type="hidden" class="form-control" id="idQuestion_new_create" name="idQuestion" value="' +
+                        questId + '">';
+                    input += '<div class="form-group form-element-textarea" style="margin-bottom: 0;">';
+                    input +=
+                        '<textarea class="form-control" id="option_value_create" name="option" placeholder="Option name" style="height:50px;" require></textarea>';
+                    input +=
+                        '</div></div><div class="col-2" style="align-self: center;"><div class="checkbox-theme-default custom-checkbox ">';
+                    input +=
+                        '<input class="checkbox" type="checkbox" id="check-new"><label for="check-new"><span class="checkbox-text">Correct</span></label>';
+                    input += '</div></div><div class="col-3" style="align-self: center;">';
+                    input +=
+                        '<button id="button_create" class="btn btn-info btn-default btn-squared btn-transparent-info ">Create</button></div></div></div>';
+                    $('#option_form').append(input);
+                }
+            })
+            $(document).on('click', "#button_create", function() {
+                var option_value_create = $("#option_value_create").val();
+                if (!option_value_create) {
+                    return toastr.error("Sorry, Option name cannot be empty!");
+                }
+                var idQuestion = $('#idQuestion_new_create').val();
+                var option = $('#option_value_create').val();
+                var isCorrect = $("#check-new").is(':checked') ? isCorrect = $("#isCorrect").val() : 0;
+                $.ajax({
+                    type: "POST",
+                    datatype: "JSON",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        idQuestion: idQuestion,
+                        option: option,
+                        isCorrect: isCorrect
+                    },
+                    url: '/admin/add-option',
+                    success: function(result) {
+                        if (result) {
+                            $('#button_create').removeClass('btn-info btn-transparent-info');
+                            $('#form_add_option').removeAttr('id').attr('id',
+                                `form-${result.id}`)
+                            $('#button_create').addClass(
+                                'btn-primary btn-transparent-primary btn-update-option');
+                            $('#button_create').html('Update');
+                            $('#button_create').data('id', `${result.id}`);
+                            $('#button_create').removeAttr('id');
+                            $('textarea#option_value_create').removeAttr('id').addClass('id',
+                                `option-${result.id}`);
+                            $('input#idQuestion_new_create').removeAttr('id').attr('id',
+                                `idOption-${result.id}`);
+                            $("#check-new").removeAttr('id').attr('id', `check-${result.id}`);
+                            $('.custom-checkbox label').attr('for', `check-${result.id}`);
+
+                            toastr.success('Add option success!');
+                        } else {
+                            toastr.error('Opps!....');
+                        }
+                    },
+                });
+            })
+            $(document).on('click', ".btn-update-option", function() {
+                var idOption = $(this).data('id');
+                var question_id = $('#idquestion').val();
+                var option = $(`#option-${idOption}`).val();
+                var iscorrect = $(`#check-${idOption}`).is(":checked");
+                if (iscorrect) {
+                    iscorrect = 1;
+                } else {
+                    iscorrect = 0;
+                }
+                $.ajax({
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        option: option,
+                        idQuestion: question_id,
+                        idOption: idOption,
+                        isCorrect: iscorrect
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+
+                    url: '{{ route('ajax.option.update') }}',
+                    success: function(rs) {
+                        if (rs) {
+                            return toastr.success('Update successfully!!!!!');
+                        }
+                        return toastr.error('Opps update failed!!!!!');
+                    }
+                })
+            })
+            $(document).on('click', '.btn-delete-option', function() {
+                var id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    datatype: "JSON",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        id: id
+                    },
+                    url: `/admin/option/${id}/delete`,
+                    success: function(result) {
+                        if (result) {
+                            toastr.success('Deleted Successfully!!!!');
+                            // $(`#form-${id}`).remove();
+                            $(`#form-${id}`).hide('slow', function() {
+                                $(`#form-${id}`).remove();
+                            });
+
+                        } else {
+                            toastr.error('Deleted Error!!!');
+                        }
+                    },
+                });
 
 
+            });
         });
 
 
