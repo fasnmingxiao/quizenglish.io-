@@ -6,7 +6,7 @@
             <div class="text_heading">{{ $title }}</div>
             <div id="score" style="padding:20px 0; font-size:20px;text-align:center;font-weight:700;"></div>
             <div class="question-cat">
-                {{ $listQuestion[0]['question'] }}
+                Choose the best option in the following sentence.
             </div>
             <div class="start_quizz">
                 <form action="">
@@ -56,7 +56,7 @@
                         @if (count($listQuestion) > 0)
                             @php
                                 $ntt = 0;
-
+                                
                             @endphp
                             @foreach ($listQuestion as $item)
                                 @php

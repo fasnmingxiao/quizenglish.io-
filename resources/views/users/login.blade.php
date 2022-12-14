@@ -34,10 +34,10 @@
                                 </button>
                                 <p class="text">or login with</p>
                                 <div class="another">
-                                    <a href="{{ route('login.google') }}"><img src="{{ asset('/template/img/Google.png') }}"
-                                            class="item"></a>
+                                    <a href="{{ route('login.google') }}" target="_blank"><img
+                                            src="{{ asset('/template/img/Google.png') }} " class="item"></a>
 
-                                    <a href="{{ route('login.facebook') }}"> <img
+                                    <a href="{{ route('login.facebook') }}" target="_blank"> <img
                                             src="{{ asset('/template/img/Facebook.png') }}" class="item"></a>
 
                                 </div>
