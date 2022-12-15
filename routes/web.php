@@ -57,6 +57,12 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/remove/permission-from-role', [ManagementController::class, 'unsetpermission'])->name('management.unsetpermission');
     Route::post('/get-permission-diff', [ManagementController::class, 'getPermissionDiff'])->name('management.getpermissiondiff');
 
+    Route::post('/add-role', [ManagementController::class, 'addRole'])->name('add.role');
+    Route::post('/update-role', [ManagementController::class, 'updateRole'])->name('update.role');
+    Route::get('/delete/{id}', [ManagementController::class, 'deleteRole'])->name('management.delete');
+    Route::get('/role/{id}', [ManagementController::class, 'getRole'])->name('management.getRole');
+
+
         // Route::get('/topic', [TopicAdminController::class, 'index'])->name('admin.topic');
         Route::get('/db/topic', [TopicAdminController::class, 'index_db'])->name('db.topic.view');
         // Route::get('/db/topic/add', [TopicAdminController::class, 'add_topic'])->name('db.topic.add');

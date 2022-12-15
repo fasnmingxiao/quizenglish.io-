@@ -84,6 +84,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="userDatatable global-shadow border p-30 bg-white radius-xl w-100 mb-30">
+                        <div class="row mb-3">
+                            <div class="col-10"></div>
+                            <div class="col-2 text-center">
+                                <button data-toggle="modal" data-target="#new-topic"
+                                    class="btn btn-primary btn-default btn-squared ">Create Role
+                                </button>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table id="user-table" class=" table mb-0 table-borderless">
                                 <thead>
@@ -142,27 +150,30 @@
                                                             </span>
                                                         </div>
                                                     @endforeach
-                                                    <div class="userDatatable-content d-inline-block mb-1"
-                                                        id="permission-new" style="cursor: pointer;">
-                                                        <span
-                                                            class=" color-warning rounded-pill userDatatable-content-status active avatar"
-                                                            style="background-color: #dbdbe6; color: black; margin: 0 6px;">
-                                                            <i class="fas fa-shield-alt"></i>&nbsp;
-                                                            Assign more permissions ...
-                                                            <span data-role="{{ $role->id }}"
-                                                                class="btn-add-permission avatar-badge-wrap"
-                                                                style="top:2px; right:-12px">
-                                                                <span class="badge badge-round badge-md"
-                                                                    style="background-color: #29ca71; color:white;"><i
-                                                                        class="fas fa-plus"></i></span>
+                                                    {{-- <div class="dropdown dropdown-btn dropdown-hover">
+                                                        <div class="userDatatable-content d-inline-block mb-1"
+                                                            id="permission-new" style="cursor: pointer;">
+                                                            <span
+                                                                class=" color-warning rounded-pill userDatatable-content-status active avatar"
+                                                                style="background-color: #dbdbe6; color: black; margin: 0 6px;">
+                                                                <i class="fas fa-shield-alt"></i>&nbsp;
+                                                                Assign more permissions ...
+                                                                <span data-role="{{ $role->id }}"
+                                                                    class="btn-add-permission avatar-badge-wrap"
+                                                                    style="top:2px; right:-12px">
+                                                                    <span class="badge badge-round badge-md"
+                                                                        style="background-color: #29ca71; color:white;"><i
+                                                                            class="fas fa-plus"></i></span>
+                                                                </span>
                                                             </span>
-                                                        </span>
-                                                    </div>
+                                                        </div>
+                                                    </div> --}}
                                                 </td>
                                                 <td>
                                                     <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
                                                         <li>
-                                                            <a href="#" class="edit">
+                                                            <a href="#" class="edit"
+                                                                data-id="{{ $role->id }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
                                                                     stroke="currentColor" stroke-width="2"
@@ -177,21 +188,27 @@
                                                                 </svg></a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="remove">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-trash-2">
-                                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                                    <path
-                                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                                    </path>
-                                                                    <line x1="10" y1="11" x2="10"
-                                                                        y2="17"></line>
-                                                                    <line x1="14" y1="11" x2="14"
-                                                                        y2="17"></line>
-                                                                </svg></a>
+                                                            <form id="form-delte-{{ $role->id }}"
+                                                                action="{{ route('management.delete', ['id' => $role->id]) }}"
+                                                                method="GET">
+                                                                @csrf
+                                                                <a href="#" data-id="{{ $role->id }}"
+                                                                    class="remove">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                                        stroke="currentColor" stroke-width="2"
+                                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                                        class="feather feather-trash-2">
+                                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                                        <path
+                                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                        </path>
+                                                                        <line x1="10" y1="11"
+                                                                            x2="10" y2="17"></line>
+                                                                        <line x1="14" y1="11"
+                                                                            x2="14" y2="17"></line>
+                                                                    </svg></a>
+                                                            </form>
                                                         </li>
                                                     </ul>
                                                 </td>
@@ -213,33 +230,85 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content  radius-xl">
                 <div class="modal-header">
-                    <h6 class="modal-title fw-500" id="staticBackdropLabel">Create topic</h6>
+                    <h6 class="modal-title fw-500" id="staticBackdropLabel">Create role</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span data-feather="x"></span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="new-member-modal">
-                        <form id="updateOption" method="POST">
+                        <form id="CreateRole" method="POST" action="{{ route('add.role') }}">
                             @csrf
                             <div class="form-group mb-20">
                                 <div class="position-relative">
-                                    <input type="hidden" id="idOption" name="idOption">
-                                    <input type="hidden" id="question_id" name="question_id">
-                                    <input type="text" name="option" id="option" class="form-control"
-                                        placeholder="option" required>
+                                    <input type="text" name="name" id="role" class="form-control"
+                                        placeholder="Role name" required>
+                                    <div style="top:10%;right:15px" class="icon-check position-absolute"></div>
+                      </div>
+                                <div class="d-flex flex-wrap mt-4">
+                                    @foreach ($permissions as $permission)
+                                        <div class="mb-3 mr-3">
+                                            <div class="checkbox-theme-default custom-checkbox ">
+                                                <input class="checkbox" type="checkbox" id="per-{{ $permission->id }}"
+                                                    name="role[]" value="{{ $permission->id }}">
+                                                <label for="per-{{ $permission->id }}">
+                                                    <span class="checkbox-text">
+                                                        {{ $permission->name }}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="button-group d-flex pt-25">
+                                <button class="btn btn-primary btn-default btn-squared text-capitalize">save
+                                </button>
+                                <button type="submit"
+                                    class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade new-member" id="update-role" role="dialog" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content  radius-xl">
+                <div class="modal-header">
+                    <h6 class="modal-title fw-500" id="staticBackdropLabel">Update role</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span data-feather="x"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="new-member-modal">
+                        <form id="UpdateRole" method="POST" action="{{ route('update.role') }}">
+                            @csrf
+                            <div class="form-group mb-20">
+                                <div class="position-relative">
+                                    <input type="hidden" id="update_role_id" name="update_role_id">
+                                    <input type="text" name="update_role_name" id="update_role_name"
+                                        class="form-control" placeholder="Role name" required>
                                     <div style="top:10%;right:15px" class="icon-check position-absolute"></div>
                                 </div>
-
-                            </div>
-                            <div class="mb-3">
-                                <div class="checkbox-theme-default custom-checkbox ">
-                                    <input class="checkbox" type="checkbox" name="iscorrect" id="iscorrect">
-                                    <label for="iscorrect">
-                                        <span class="checkbox-text">
-                                            Check if option is correct.
-                                        </span>
-                                    </label>
+                                <div class="d-flex flex-wrap mt-4">
+                                    @foreach ($permissions as $permission)
+                                        <div class="mb-3 mr-3">
+                                            <div class="checkbox-theme-default custom-checkbox ">
+                                                <input class="checkbox check-box-update" type="checkbox" id="per-update-{{ $permission->id }}"
+                                                    name="permissions[]" value="{{ $permission->id }}">
+                                                <label for="per-update-{{ $permission->id }}">
+                                                    <span class="checkbox-text">
+                                                        {{ $permission->name }}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="button-group d-flex pt-25">
@@ -258,7 +327,11 @@
 @endsection
 
 @section('footer')
-    <script>
+    <script>          
+        function existsEdge(collection, id) {
+            return Object.values(collection).some(v => v.id == id);
+            
+        }
         $(document).ready(function() {
             $('.btn-remove-permission').on('click', function() {
                 var role = $(this).data('role');
@@ -312,6 +385,52 @@
 
                     }
                 })
+            })
+            $('.remove').on('click', function() {
+                var id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        setTimeout(function() {
+                            $(`#form-delte-${id}`).submit();
+                        }, 2000);
+
+                    }
+                })
+            })
+            $('.edit').on('click', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    datatype: "JSON",
+                    url: 'http://quizzeng.com/admin/role/' + id,
+                    success: function(result) {
+                        $('#update_role_name').val(result.role.name);
+                        $('#update_role_id').val(result.role.id);
+                        $('.check-box-update').each(function(index) {
+                            var idc = $(this).val();
+                            if(existsEdge(result.role.permissions, idc)){
+                               return $(this).prop('checked', true);
+                            }
+                            return $(this).prop('checked', false);
+                        });
+                        console.log(result);
+                    },
+                })
+                $('#update-role').modal('show');
             })
         })
     </script>
