@@ -819,9 +819,9 @@ html {
 .quizzes_section_item .img {
     margin: 0 auto;
     display: block;
-    width: -webkit-fill-available;
+    /* width: -webkit-fill-available; */
     object-fit: fill;
-    /* width: 235px; */
+    width: 235px;
     height: 165px;
 }
 .quizzes_section_item_img {
