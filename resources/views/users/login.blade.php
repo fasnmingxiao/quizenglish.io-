@@ -25,19 +25,25 @@
                                     <div class="alert text-danger">{{ $message }}</div>
                                 @enderror
                                 <a href="/forgot-password" class="forgot_pass">Forgot your password?</a>
+                                <div class="no-capcha">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                </div>
                                 <button class="submit" type="submit">
                                     Login now!
                                 </button>
                                 <p class="text">or login with</p>
                                 <div class="another">
-                                    <img src="{{ asset('/template/img/Google.png') }}" class="item">
-                                    <img src="{{ asset('/template/img/Facebook.png') }}" class="item">
+                                    <a href="{{ route('login.google') }}" target="_blank"><img
+                                            src="{{ asset('/template/img/Google.png') }} " class="item"></a>
+
+                                    <a href="{{ route('login.facebook') }}" target="_blank"> <img
+                                            src="{{ asset('/template/img/Facebook.png') }}" class="item"></a>
+
                                 </div>
                             </form>
                             <img class="form_bg" src="{{ asset('/template/img/Illusttration.png') }}" alt="...">
                         </div>
-
-
                     </div>
                 </div>
 

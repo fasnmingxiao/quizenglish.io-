@@ -75,7 +75,7 @@
                                     <label class="form-check-label" for="isCorrect">If the answer is correct, please tick
                                         the box!</label>
                                 </div>
-                                <button id="submit-add-option" style="width:100%;  background-color:var(--blue);"
+                                <button id="submit-add-option" style="width:100%;  background-color:var(--blue); margin-top: 15px;"
                                     type="submit" class="btn btn-secondary">Add
                                     Option</button>
                             </form>

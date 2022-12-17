@@ -5,6 +5,9 @@
             @include('breadcumb')
             <div class="text_heading">{{ $title }}</div>
             <div id="score" style="padding:20px 0; font-size:20px;text-align:center;font-weight:700;"></div>
+            <div class="question-cat">
+                Choose the best option in the following sentence.
+            </div>
             <div class="start_quizz">
                 <form action="">
                     <div class="list_quizz">
@@ -42,8 +45,8 @@
                     </div>
                 </form>
                 <div class="question">
-                    <div class="d-flex mb-5" id="wp-countdown">
-                        <i class="fas fa-clock mr-3"></i>
+                    <div class="d-flex" id="wp-countdown">
+                        <i class="fas fa-clock mr-3" style="font-size: 20px"></i>
                         <div class="timeCountDown" data-time="{{ $time }}"
                             data-id="{{ $listQuestion[0]['quizcategories']['id'] }}"></div>
 
@@ -71,7 +74,9 @@
                 </div>
             </div>
         </div>
-        <div class="container text-center" style="display:none" id="subResult">
+        <div class="container text-center" style="display:none; margin-top: 35px;" id="subResult">
+            <a href="{{ route('member.myquiz') }}" class="btn"
+                style=" padding: 15px 20px; background-color: tomato; color: white">Back</a>
             <a href="{{ $_SERVER['REQUEST_URI'] }}" class="btn btn-info"
                 style=" padding: 15px 20px; background-color: var(--blue);">Try Again</a>
             <button type="button" id="two" class="btn btn-danger button-mdal">Report
@@ -174,6 +179,7 @@
                 success: function(data) {
                     $('#subResult').css('display', 'block');
                     $('.start_quizz').remove();
+                    $('.question-cat').remove();
                     $('#show_content').append(data.data);
                     $('#score').html(data.score);
                 }

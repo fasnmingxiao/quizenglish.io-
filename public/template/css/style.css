@@ -65,6 +65,11 @@ html {
 }
 
 /* .. */
+
+.timeCountDown {
+    font-size: 20px;
+}
+
 .fullName {
     font-family: "Open Sans";
     font-style: normal;
@@ -77,6 +82,7 @@ html {
 
 .breadcrumb {
     background-color: unset !important;
+    font-family: "Lato";
 }
 
 .breadcumb a {
@@ -101,7 +107,7 @@ html {
     font-weight: 700;
     font-size: 36px;
     line-height: 61px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     color: var(--black);
 }
 
@@ -563,7 +569,7 @@ html {
     text-decoration: none;
     color: var(--gray);
     display: block;
-    margin-bottom: 75px;
+    margin-bottom: 30px;
     text-align: right;
 }
 
@@ -629,8 +635,8 @@ html {
     border-radius: 10px;
     display: block;
     margin-bottom: 13px;
-    width: 465px;
-    height: 60px;
+    width: 390px;
+    height: 55px;
     border: 1px solid #e0e0e0;
 }
 
@@ -660,7 +666,7 @@ html {
     outline: none;
     border: none;
     cursor: pointer;
-    margin: 40px auto;
+    margin: 25px auto;
     display: block;
 }
 
@@ -746,7 +752,8 @@ html {
 
 .quizz_wrapper {
     display: flex !important;
-    justify-content: space-between !important;
+    /* justify-content: space-between !important; */
+    margin-left: 8px;
 }
 
 .quizz_item {
@@ -812,9 +819,9 @@ html {
 .quizzes_section_item .img {
     margin: 0 auto;
     display: block;
-    width: -webkit-fill-available;
+    /* width: -webkit-fill-available; */
     object-fit: fill;
-    /* width: 235px; */
+    width: 235px;
     height: 165px;
 }
 .quizzes_section_item_img {
@@ -888,6 +895,7 @@ html {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 50px;
 }
 
 .quizz_details .item img {
@@ -915,7 +923,7 @@ html {
     font-family: "Lato";
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 30px;
     color: var(--gray);
     margin-bottom: 18px;
@@ -977,7 +985,7 @@ html {
 }
 
 .my_quizz_section-2 {
-    margin-top: 45px;
+    margin-top: 70px;
 }
 
 .my_quizz_section-2 .quizz_wrapper {
@@ -1084,8 +1092,9 @@ html {
 .start_quizz .list_quizz {
     padding: 40px;
     background: var(--clr-chooseQuiz);
-    width: 920px;
+    width: 760px;
     border-radius: 18px;
+    margin-bottom: 20px;
 }
 
 .start_quizz .question {
@@ -1102,8 +1111,8 @@ html {
     width: 100%;
     font-family: "Open Sans";
     font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 18px;
     line-height: 27px;
 }
 
@@ -1203,18 +1212,28 @@ html {
     }
 }
 
-.start_quizz .question .head {
+.question-cat {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 24px;
     line-height: 34px;
     color: var(--black);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+.start_quizz .question .head {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: var(--black);
+    margin-bottom: 20px;
 }
 
 .start_quizz .question {
-    width: 380px;
+    width: 330px;
     padding: 25px;
     border-radius: 18px;
     background: var(--clr-chooseQuiz);
@@ -1234,18 +1253,21 @@ html {
     border-radius: 4px;
     text-align: center;
     display: inline-block;
-    margin: 8px;
+    margin: 3px;
+    font-size: 20px;
 }
 
 .start_quizz .submit_question {
     color: var(--white);
     background-color: var(--blue);
-    padding: 12px 50px;
+    padding: 10px 40px;
     border-radius: 10px;
     border: none;
     outline: none;
-    margin: 38px auto 0;
+    margin: 30px auto 0;
     display: block;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .quizz_result {
@@ -2009,8 +2031,10 @@ html {
     font-size: 20px;
 }
 .list_quizz .question-title {
-    font-size: 30px;
-    padding: 25px;
+    font-size: 22px;
+    padding-bottom: 25px;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .question-item .question-title {
@@ -2193,6 +2217,7 @@ html {
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 .nodata {
     font-family: "Lato";
@@ -2414,9 +2439,6 @@ html {
     display: inline-block;
     text-align: center;
     padding: 15px 20px;
-    margin: 20px 10px;
-    background: red;
-    font-size: 18px;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }

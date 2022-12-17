@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                                 <div class="action-btn">
-                                    <a href="" class="btn btn-sm btn-primary btn-add">
+                                    <a href="{{ route('db.topic.view') }}" class="btn btn-sm btn-primary btn-add">
                                         <i class="la la-plus"></i> Add New</a>
                                 </div>
                             </div>
@@ -2327,5 +2327,4 @@
             </div>
         </div>
     </div>
-   
 @endsection

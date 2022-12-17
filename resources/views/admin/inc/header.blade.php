@@ -4,7 +4,7 @@
             <a href="" class="sidebar-toggle">
                 <img class="svg" src="{{ asset('/img/svg/bars.svg') }}" alt="img"></a>
             <a class="navbar-brand" href="{{ route('dashboard') }}"><img class="dark"
-                    src="{{ asset('/img/logo_dark.png') }}" alt="svg"><img class="light"
+                    src="{{ asset('/img/logo_quizz.png') }}" alt="svg"><img class="light"
                     src="{{ asset('/img/logo_white.png') }}" alt="img"></a>
             <form action="/" class="search-form">
                 <span data-feather="search"></span>
@@ -972,24 +972,18 @@
                     <div class="dropdown-custom">
                         <a href="javascript:;" class="nav-item-toggle"><img src="{{ asset('/img/flag.png') }}"
                                 alt="" class="rounded-circle"></a>
-                        <div class="dropdown-wrapper dropdown-wrapper--small">
-                            <a href=""><img src="{{ asset('/img/eng.png') }}" alt=""> English</a>
-                            <a href=""><img src="{{ asset('/img/ger.png') }}" alt=""> German</a>
-                            <a href=""><img src="{{ asset('/img/spa.png') }}" alt=""> Spanish</a>
-                            <a href=""><img src="{{ asset('/img/tur.png') }}" alt=""> Turkish</a>
-                        </div>
                     </div>
                 </li>
                 <!-- ends: .nav-flag-select -->
                 <li class="nav-author">
                     <div class="dropdown-custom">
                         <a href="javascript:;" class="nav-item-toggle"><img
-                                src="{{ !empty(Auth::user()->avatar) ? url('/storage/images/users/300/' . Auth::user()->avatar) : asset('/img/author-nav.jpg') }}"
+                                src="{{ !empty(Auth::user()->avatar) ? url('/storage/images/users/300/' . Auth::user()->avatar) : asset('/template/img/user_default.png') }}"
                                 alt="" class="rounded-circle"></a>
                         <div class="dropdown-wrapper">
                             <div class="nav-author__info">
                                 <div class="author-img">
-                                    <img src="{{ !empty(Auth::user()->avatar) ? url('/storage/images/users/300/' . Auth::user()->avatar) : asset('/img/author-nav.jpg') }}"
+                                    <img src="{{ !empty(Auth::user()->avatar) ? url('/storage/images/users/300/' . Auth::user()->avatar) : asset('/template/img/user_default.png') }}"
                                         alt="" class="rounded-circle">
                                 </div>
                                 <div>
@@ -1020,7 +1014,7 @@
                                             <span data-feather="bell"></span> Help</a>
                                     </li>
                                 </ul>
-                                <a href="" class="nav-author__signout">
+                                <a href="{{ route('logout') }}" class="nav-author__signout">
                                     <span data-feather="log-out"></span> Sign Out</a>
                             </div>
                         </div>

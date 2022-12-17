@@ -29,6 +29,16 @@ Route::get('/email/verify', [AuthController::class, 'index'])->middleware('auth'
 Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', [AuthController::class, 'resend_token'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+//Google Login
+Route::get('login/google', [App\Http\Controllers\UserController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [App\Http\Controllers\UserController::class, 'handleGoogleCallback']);
+
+//Facebook Login
+Route::get('login/facebook', [App\Http\Controllers\UserController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [App\Http\Controllers\UserController::class, 'handleFacebookCallback']);
+
+
 //Client
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login');

@@ -45,13 +45,23 @@
                 dataType: "JSON",
                 url: '/admin/add-topic/' + key,
                 success: function(data) {
-                    console.log(data);
+                    // console.log(Object.values(data).length);
+                    // console.log(document.getElementById("newNameCategory")[0].value);
                     if (Object.values(data).length == '') {
-                        $('#button-add').attr('disabled', false);
-                        $('.icon-check').hide().html(
-                            '<i class="fas fa-check" style="color: #33ed53;font-size: 24px;line-height: 38px;margin-left: 5px;"></i>'
-                        ).fadeIn(500);
+                        if (key === '@') {
+                            $('#button-add').attr('disabled', true);
+                            toastr.error('Topic must not have special characters');
+                            $('.icon-check').hide().html(
+                                '<i class="fas fa-times" style="color: #f00;font-size: 24px;line-height: 38px;margin-left: 5px;"></i>'
+                            ).fadeIn(500)
+                        } else {
+                            $('#button-add').attr('disabled', false);
+                            $('.icon-check').hide().html(
+                                '<i class="fas fa-check" style="color: #33ed53;font-size: 15px;line-height: 38px;margin-left: 5px;"></i>'
+                            ).fadeIn(500);
+                        }
                     } else {
+
                         $('#button-add').attr('disabled', true);
                         toastr.error('Topic has exists');
                         $('.icon-check').hide().html(

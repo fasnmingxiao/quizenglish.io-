@@ -1,7 +1,7 @@
 <footer>
     <div class="container">
         <div class="footer" id="aboutus">
-            <a href="index.html" class="logo">
+            <a href="{{ url('/') }}" class="logo">
                 <svg class="logo-light d-none" width="173" height="72" viewBox="0 0 173 72" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

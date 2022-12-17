@@ -59,7 +59,7 @@
                                                     <div class="button-group d-flex pt-25">
                                                         <button type="submit" id="buttonAddQuestion"
                                                             class="btn btn-primary btn-default btn-squared text-capitalize">add
-                                                            new project
+                                                            new question
                                                         </button>
                                                     </div>
                                                 </form>
@@ -286,9 +286,8 @@
                             <div class="button-group d-flex justify-content-center mb-2">
                                 <button class="btn btn-primary btn-default btn-squared text-capitalize">Update
                                 </button>
-                                <button type="button" id="add_element_option"
-                                    class="btn btn-warning btn-default btn-squared text-capitalize">Add
-                                    new option
+                                <button data-dismiss="modal"
+                                    class="btn btn-light btn-default btn-squared fw-400 text-capitalize b-light color-light">cancel
                                 </button>
                             </div>
                         </form>
@@ -334,7 +333,8 @@
                         <div class="option-show">
 
                         </div>
-                        <button id="submit-add-option" style="width: 100%; background-color: #2e80ff; display: none;"
+                        <button id="submit-add-option"
+                            style="width: 100%; background-color: #2e80ff; display: none; margin-top: 15px;"
                             type="submit" class="btn btn-secondary">Add
                             Option</button>
                     </form>
