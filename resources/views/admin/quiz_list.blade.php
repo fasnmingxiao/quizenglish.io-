@@ -107,10 +107,7 @@
                                             <span class="userDatatable-title">Times</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">Created_at</span>
-                                        </th>
-                                        <th>
-                                            <span class="userDatatable-title float-right">Action</span>
+                                            <span class="userDatatable-title">Action</span>
                                         </th>
                                     </tr>
                                 </thead>
@@ -287,7 +284,7 @@
     </script>
     <script>
         $('#quiz').addClass('active');
-        $('.edit-button').on('click', function() {
+        $(document).on('click','.edit-button', function() {
             var buttonID = $(this).attr('id');
             var id = $(this).data('id');
             $.ajax({
@@ -305,7 +302,7 @@
                 }
             })
         })
-        $('.buttonDelete').on('click', function() {
+        $(document).on('click','.buttonDelete', function() {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

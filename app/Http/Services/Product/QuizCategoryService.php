@@ -24,7 +24,7 @@ class QuizCategoryService
              $data->cat_name = $data->catTopic->name;
              $data->qty_question = count($data->question);
              $data->times =  config('constants.time_quiz.' . $data->time) .  'minutes';
-             $data->action = '<ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
+             $data->action = '<ul class="orderDatatable_actions mb-0 d-flex flex-wrap justify-content-center">
              <li>
                  <a href="#" class="edit edit-button"
                      data-id="'. $data->id . '">
