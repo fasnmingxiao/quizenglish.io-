@@ -28,7 +28,7 @@ class QuizzCategoryController extends Controller
     }
     function ajaxGetQuiz(Request $request)
     {
-        $data= $this->quizCategoryService->ajaxGetQuiz($request->all());
+        $data = $this->quizCategoryService->ajaxGetQuiz($request->all());
         return response()->json($data);
     }
     function quiz_db()
@@ -57,7 +57,7 @@ class QuizzCategoryController extends Controller
     function delete($id)
     {
         $this->quizCategoryService->delete($id);
-        return redirect()->route('db.quiz_list', ['page'=> '1']);
+        return redirect()->route('db.quiz_list', ['page' => '1']);
     }
     function show($id)
     {

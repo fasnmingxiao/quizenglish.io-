@@ -16,18 +16,19 @@ class QuizCategoryService
     {
         return $this->quizCategoryRepository->getall();
     }
-    function ajaxGetQuiz($requestall){
+    function ajaxGetQuiz($requestall)
+    {
         $model = $this->quizCategoryRepository->getAll();
         $recordsTotal = $model->count();
         $datas = $this->quizCategoryRepository->getAlloffset($requestall['start'], $requestall['length']);
-         $datas->map(function ($data) {
-             $data->cat_name = $data->catTopic->name;
-             $data->qty_question = count($data->question);
-             $data->times =  config('constants.time_quiz.' . $data->time) .  'minutes';
-             $data->action = '<ul class="orderDatatable_actions mb-0 d-flex flex-wrap justify-content-center">
+        $datas->map(function ($data) {
+            $data->cat_name = $data->catTopic->name;
+            $data->qty_question = count($data->question);
+            $data->times =  config('constants.time_quiz.' . $data->time) .  'minutes';
+            $data->action = '<ul class="orderDatatable_actions mb-0 d-flex flex-wrap justify-content-center">
              <li>
                  <a href="#" class="edit edit-button"
-                     data-id="'. $data->id . '">
+                     data-id="' . $data->id . '">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24"
                          height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2"
@@ -42,7 +43,7 @@ class QuizCategoryService
                      </svg></a>
              </li>
              <li>
-                 <a href="#" data-id="'. $data->id . '"
+                 <a href="#" data-id="' . $data->id . '"
                      class="buttonDelete remove">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24"
                          height="24" viewBox="0 0 24 24" fill="none"
@@ -60,8 +61,8 @@ class QuizCategoryService
                      </svg></a>
              </li>
          </ul>';
-         });
-         return ['result' => $datas, 'recordsTotal' => $recordsTotal , 'recordsFiltered' => $recordsTotal];
+        });
+        return ['result' => $datas, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
     function create($request)
     {

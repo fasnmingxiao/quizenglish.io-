@@ -66,7 +66,6 @@ function tree_topic($array, $parent_id = 0, $char = '')
             tree_topic($array, $item['id'], $char . '--');
         }
     }
-    
 }
 function check_img_topic($img)
 {

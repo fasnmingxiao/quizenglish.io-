@@ -16,10 +16,12 @@ class UserRepository
     {
         return  $this->user->create($attributes);
     }
-    function getAll(){
+    function getAll()
+    {
         return $this->user->with(['roles'])->get();
     }
-    function getAlloffset($offset, $limit){
+    function getAlloffset($offset, $limit)
+    {
         return $this->user->with(['roles'])->offset($offset)->limit($limit)->get();
     }
     public function get_reg_today()

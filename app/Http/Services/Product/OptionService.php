@@ -25,16 +25,17 @@ class OptionService
             return ['error' => $error->getMessage()];
         }
     }
-    function ajaxGetOption($requestall){
-       $model = $this->optionRepository->getAll();
-       $recordsTotal = $model->count();
-       $datas = $this->optionRepository->getAlloffset($requestall['start'], $requestall['length']);
+    function ajaxGetOption($requestall)
+    {
+        $model = $this->optionRepository->getAll();
+        $recordsTotal = $model->count();
+        $datas = $this->optionRepository->getAlloffset($requestall['start'], $requestall['length']);
         $datas->map(function ($data) {
             $data->question_name = $data->question->question;
             $data->action = '<ul class="orderDatatable_actions justify-content-center mb-0 d-flex flex-wrap">
             <li>
                 <a href="#" class="edit edit-button"
-                    data-id="'. $data->id .'">
+                    data-id="' . $data->id . '">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2"
@@ -49,7 +50,7 @@ class OptionService
                     </svg></a>
             </li>
             <li>
-                <a href="#" data-id="'. $data->id .'"
+                <a href="#" data-id="' . $data->id . '"
                     class="buttonDelete remove">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 24 24" fill="none"
@@ -68,7 +69,7 @@ class OptionService
             </li>
         </ul>';
         });
-        return ['result' => $datas, 'recordsTotal' => $recordsTotal , 'recordsFiltered' => $recordsTotal];
+        return ['result' => $datas, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
     function checkOptionUnique($request)
     {
@@ -93,13 +94,13 @@ class OptionService
     function update($request)
     {
         try {
-           return  $this->optionRepository->update(['iscorrect' => $request->get('isCorrect'), 'value' => $request->get('option')], $request->get('idOption'));
+            return  $this->optionRepository->update(['iscorrect' => $request->get('isCorrect'), 'value' => $request->get('option')], $request->get('idOption'));
         } catch (\Exception $error) {
             return false;
         }
     }
     function getById($id)
-        {
-            return $this->optionRepository->getById($id);
-        }
+    {
+        return $this->optionRepository->getById($id);
+    }
 }

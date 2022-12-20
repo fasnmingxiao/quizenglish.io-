@@ -123,7 +123,8 @@
                                                     <div class="userDatatable-content">{{ $item->name }}</div>
                                                 </td>
                                                 <td>
-                                                    <div style="padding-top:17px;" class="userDatatable-content">{!! $item->description !!}</div>
+                                                    <div style="padding-top:17px;" class="userDatatable-content">
+                                                        {!! $item->description !!}</div>
                                                 </td>
                                                 <td>
                                                     <div class="userDatatable-content">{{ count($item->question) }}
@@ -271,7 +272,7 @@
         });
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var datatable = $('#quiz_table').DataTable({
                 bAutoWidth: false,
                 stateSave: true,
@@ -324,7 +325,8 @@
                         orderable: false,
                         className: 'media-middle text-center media-middle',
                         render: function(data, type, row) {
-                            return '<div class="userDatatable-content">' + row.description + '</div>';
+                            return '<div class="userDatatable-content">' + row.description +
+                                '</div>';
                         }
                     },
                     {
@@ -332,7 +334,8 @@
                         orderable: true,
                         className: 'media-middle text-center media-middle',
                         render: function(data, type, row) {
-                            return '<div class="userDatatable-content">' + row.qty_question + '</div>';
+                            return '<div class="userDatatable-content">' + row.qty_question +
+                                '</div>';
                         }
                     },
                     {
@@ -355,7 +358,7 @@
     </script>
     <script>
         $('#quiz').addClass('active');
-        $(document).on('click','.edit-button', function() {
+        $(document).on('click', '.edit-button', function() {
             var buttonID = $(this).attr('id');
             var id = $(this).data('id');
             $.ajax({
@@ -373,7 +376,7 @@
                 }
             })
         })
-        $(document).on('click','.buttonDelete', function() {
+        $(document).on('click', '.buttonDelete', function() {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -390,9 +393,9 @@
                         'success'
                     )
                     var id = $(this).data('id');
-                return window.location = `/admin/quizcategory/${id}/delete`;
+                    return window.location = `/admin/quizcategory/${id}/delete`;
                 }
-            return false;
+                return false;
 
             })
         })

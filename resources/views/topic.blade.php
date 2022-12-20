@@ -12,12 +12,12 @@
                     <div class="bg-fluid">
                     </div>
                     <div class="head">Please choose topic to start learn</div>
-                    <div class="search--wrapper">
+                    {{-- <div class="search--wrapper">
                         <input type="search" id="mem_search" name="key_search" class="input_search" placeholder="Search">
                         <button type="button">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                    </div>
+                    </div> --}}
                     <img class="search_img" src="{{ asset('template/img/Group 35.png') }}" alt="">
                 </div>
                 @if (count($listTopic) > 0)

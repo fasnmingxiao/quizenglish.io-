@@ -12,6 +12,7 @@ class ReportService
     {
         $this->reportRepository = $reportRepository;
     }
+    // định nghĩa để từ controller gọi đến
     public function store($request, $id)
     {
         return $this->reportRepository->store([

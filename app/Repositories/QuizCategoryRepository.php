@@ -20,8 +20,9 @@ class QuizCategoryRepository
     {
         return $this->quizCategory->whereDate('created_at', Carbon::today())->count();
     }
-    function getAlloffset($offset, $limit){
-        return $this->quizCategory->with(['catTopic' ,'question'])->offset($offset)->limit($limit)->get();
+    function getAlloffset($offset, $limit)
+    {
+        return $this->quizCategory->with(['catTopic', 'question'])->offset($offset)->limit($limit)->get();
     }
     function getall()
     {

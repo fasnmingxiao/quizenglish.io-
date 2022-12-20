@@ -16,10 +16,12 @@ class OptionRepository
     {
         return $this->option->create($attributes);
     }
-    function getAll(){
+    function getAll()
+    {
         return $this->option->with(['question'])->get();
     }
-    function getAlloffset($offset, $limit){
+    function getAlloffset($offset, $limit)
+    {
         return $this->option->with(['question'])->offset($offset)->limit($limit)->get();
     }
     function checkOptionUnique($option, $idQuestion)

@@ -23,7 +23,7 @@ class OptionController extends Controller
     }
     function ajaxGetOption(Request $request)
     {
-        $data= $this->optionSerivce->ajaxGetOption($request->all());
+        $data = $this->optionSerivce->ajaxGetOption($request->all());
         return response()->json($data);
     }
     function new()
@@ -83,7 +83,7 @@ class OptionController extends Controller
     }
     function ajaxGetOptionByid($id)
     {
-        $data= $this->optionSerivce->getById($id);
+        $data = $this->optionSerivce->getById($id);
         return response()->json($data);
     }
 }

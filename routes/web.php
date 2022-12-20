@@ -42,6 +42,7 @@ Route::get('login/facebook/callback', [App\Http\Controllers\UserController::clas
 //Client
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login');
+//Post solve data from client to server
 Route::post('/login/store', [UserController::class, 'store'])->name('login.store');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/forgot-password', [UserController::class, 'forgotPass'])->name('password.reset');
@@ -52,7 +53,7 @@ Route::post('/user/store', [UserController::class, 'create'])->name('user.store'
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/{id}/Category-detail', [TopicController::class, 'showDetail']);
 
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('db.user');
     Route::post('/ajax/user', [UserController::class, 'ajaxGetUser'])->name('ajax.user');
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
@@ -63,14 +64,14 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/upload/remove', [UploadController::class, 'remove']);
 
     Route::group(['prefix' => 'admin', 'middleware' => ['is-admin']], function () {
-    Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
-    Route::post('/remove/permission-from-role', [ManagementController::class, 'unsetpermission'])->name('management.unsetpermission');
-    Route::post('/get-permission-diff', [ManagementController::class, 'getPermissionDiff'])->name('management.getpermissiondiff');
+        Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
+        Route::post('/remove/permission-from-role', [ManagementController::class, 'unsetpermission'])->name('management.unsetpermission');
+        Route::post('/get-permission-diff', [ManagementController::class, 'getPermissionDiff'])->name('management.getpermissiondiff');
 
-    Route::post('/add-role', [ManagementController::class, 'addRole'])->name('add.role');
-    Route::post('/update-role', [ManagementController::class, 'updateRole'])->name('update.role');
-    Route::get('/delete/{id}', [ManagementController::class, 'deleteRole'])->name('management.delete');
-    Route::get('/role/{id}', [ManagementController::class, 'getRole'])->name('management.getRole');
+        Route::post('/add-role', [ManagementController::class, 'addRole'])->name('add.role');
+        Route::post('/update-role', [ManagementController::class, 'updateRole'])->name('update.role');
+        Route::get('/delete/{id}', [ManagementController::class, 'deleteRole'])->name('management.delete');
+        Route::get('/role/{id}', [ManagementController::class, 'getRole'])->name('management.getRole');
 
 
         // Route::get('/topic', [TopicAdminController::class, 'index'])->name('admin.topic');

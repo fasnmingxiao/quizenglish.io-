@@ -30,7 +30,7 @@ class QuestionService
         $option_html = '';
         foreach ($datas->options as $option) {
             $option_html .= '
-         <div class="form-group" id="form-'. $option->id .'">
+         <div class="form-group" id="form-' . $option->id . '">
              <div class="row">
                  <div class="col-6">
                      <input type="hidden" class="form-control" name="idOption-' . $option->id . '" value="' . $option->id . '">

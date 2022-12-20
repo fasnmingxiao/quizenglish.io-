@@ -1,0 +1,2 @@
+Models: Tạo định nghĩa của các bảng cơ sở dữ liệu.
+8 bảng

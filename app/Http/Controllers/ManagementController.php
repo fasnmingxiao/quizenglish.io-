@@ -11,7 +11,7 @@ class ManagementController extends Controller
     public function index()
     {
         $data = Role::with('permissions')->get();
-        $permissions= Permission::all();
+        $permissions = Permission::all();
         return view('admin.management', ['active' => 'management', 'title' => 'Management', 'roles' => $data, 'permissions' => $permissions]);
     }
     public function unsetpermission(Request $request)
@@ -35,30 +35,30 @@ class ManagementController extends Controller
     }
     public function addRole(Request $request)
     {
-        $role = Role::create(['name'=> $request->name]);
+        $role = Role::create(['name' => $request->name]);
         foreach ($request->role as $permission) {
             $per = Permission::find($permission);
             $role->givePermissionTo($per);
         }
         return redirect()->route('management.index')->with('success', 'Create role successfully!!!');
     }
-    public function deleteRole($id){
+    public function deleteRole($id)
+    {
         Role::find($id)->delete();
         return redirect()->route('management.index')->with('success', 'Delete successfully!!!');
     }
-    public function getRole($id){
+    public function getRole($id)
+    {
         $permission = Permission::all();
         $data = Role::with('permissions')->find($id);
         return response()->json(['role' => $data, 'per' => $permission]);
-
     }
     public function updateRole(Request $request)
     {
         $role = Role::find($request->update_role_id);
         $role->name = $request->update_role_name;
         $role->save();
-        foreach( $request->permissions as $permission)
-        {
+        foreach ($request->permissions as $permission) {
             $per = Permission::find($permission);
             $role->givePermissionTo($per);
         }

@@ -26,37 +26,37 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    // Google login
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
+    // // Google login
+    // public function redirectToGoogle()
+    // {
+    //     return Socialite::driver('google')->redirect();
+    // }
 
-    // Google callback|
-    public function handleGoogleCallback()
-    {
-        $user = Socialite::driver('google')->user();
+    // // Google callback|
+    // public function handleGoogleCallback()
+    // {
+    //     $user = Socialite::driver('google')->user();
 
-        $this->_registerOrLoginUser($user);
+    //     $this->_registerOrLoginUser($user);
 
-        return redirect()->route('home');
-    }
+    //     return redirect()->route('home');
+    // }
 
-    // Facebook login
-    public function redirectToFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
+    // // Facebook login
+    // public function redirectToFacebook()
+    // {
+    //     return Socialite::driver('facebook')->redirect();
+    // }
 
-    // Facebook callback|
-    public function handleFacebookCallback()
-    {
-        $user = Socialite::driver('facebook')->user();
+    // // Facebook callback|
+    // public function handleFacebookCallback()
+    // {
+    //     $user = Socialite::driver('facebook')->user();
 
-        $this->_registerOrLoginUser($user);
+    //     $this->_registerOrLoginUser($user);
 
-        return redirect()->route('home');
-    }
+    //     return redirect()->route('home');
+    // }
 
 
 
@@ -86,12 +86,13 @@ class UserController extends Controller
     {
         return view('users.forgot', ['title' => 'Forgot Password']);
     }
-    function index() {
+    function index()
+    {
         return view('admin.user_db', ['title' => 'User', 'active' => 'user']);
     }
     function ajaxGetUser(Request $request)
     {
-        $data= $this->userService->ajaxGetUser($request->all());
+        $data = $this->userService->ajaxGetUser($request->all());
         return response()->json($data);
     }
     public function create(StoreUserRequest $request)
@@ -101,6 +102,7 @@ class UserController extends Controller
         Session::flash('success', 'Register success!');
         return redirect()->route('home');
     }
+    // LoginRequest validates login
     public function store(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {

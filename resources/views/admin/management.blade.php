@@ -244,7 +244,7 @@
                                     <input type="text" name="name" id="role" class="form-control"
                                         placeholder="Role name" required>
                                     <div style="top:10%;right:15px" class="icon-check position-absolute"></div>
-                      </div>
+                                </div>
                                 <div class="d-flex flex-wrap mt-4">
                                     @foreach ($permissions as $permission)
                                         <div class="mb-3 mr-3">
@@ -299,8 +299,9 @@
                                     @foreach ($permissions as $permission)
                                         <div class="mb-3 mr-3">
                                             <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox check-box-update" type="checkbox" id="per-update-{{ $permission->id }}"
-                                                    name="permissions[]" value="{{ $permission->id }}">
+                                                <input class="checkbox check-box-update" type="checkbox"
+                                                    id="per-update-{{ $permission->id }}" name="permissions[]"
+                                                    value="{{ $permission->id }}">
                                                 <label for="per-update-{{ $permission->id }}">
                                                     <span class="checkbox-text">
                                                         {{ $permission->name }}
@@ -327,10 +328,10 @@
 @endsection
 
 @section('footer')
-    <script>          
+    <script>
         function existsEdge(collection, id) {
             return Object.values(collection).some(v => v.id == id);
-            
+
         }
         $(document).ready(function() {
             $('.btn-remove-permission').on('click', function() {
@@ -422,8 +423,8 @@
                         $('#update_role_id').val(result.role.id);
                         $('.check-box-update').each(function(index) {
                             var idc = $(this).val();
-                            if(existsEdge(result.role.permissions, idc)){
-                               return $(this).prop('checked', true);
+                            if (existsEdge(result.role.permissions, idc)) {
+                                return $(this).prop('checked', true);
                             }
                             return $(this).prop('checked', false);
                         });
